@@ -12,53 +12,60 @@
 </ion-header>
 
 <ion-content padding>
+  <form [formGroup]="form" >
+
     <ion-list>
-
-        <ion-item>
-          <ion-label stacked>Nome da questão</ion-label>
-          <ion-input [(ngModel)]="titulo" type="text"></ion-input>
-        </ion-item>
       
-        <ion-item>
-          <ion-label stacked>Enunciado da questão</ion-label>
-          <ion-textarea [(ngModel)]="enunciado" placeholder=""></ion-textarea>
-        </ion-item>
-
-
-        <ion-list>
-            <ion-list-header>
-              Resposta
+      <ion-item>
+        <ion-label stacked>Autor</ion-label>
+        <ion-input required [(ngModel)]="autor" formControlName="autor" type="text"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label stacked>Nome da questão</ion-label>
+        <ion-input required [(ngModel)]="titulo" formControlName="titulo" type="text"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label stacked>Enunciado da questão</ion-label>
+        <ion-textarea required [(ngModel)]="enunciado" formControlName="enunciado" placeholder=""></ion-textarea>
+      </ion-item>
+      
+      
+      <ion-list>
+        <ion-list-header>
+          Resposta
             </ion-list-header>
-          
+            
             <ion-item>
               <ion-label>A) </ion-label>
-              <ion-input [(ngModel)]="opcoes[0]"></ion-input>
+              <ion-input required [(ngModel)]="opcoes[0]"  formControlName="a" ></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label>B) </ion-label>
+              <ion-input required [(ngModel)]="opcoes[1]"  formControlName="b" ></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label>C) </ion-label>
+              <ion-input required [(ngModel)]="opcoes[2]" formControlName="c" ></ion-input>
             </ion-item>
     
             <ion-item>
-                <ion-label>B) </ion-label>
-                <ion-input [(ngModel)]="opcoes[1]"></ion-input>
-              </ion-item>
-    
-            <ion-item>
-                <ion-label>C) </ion-label>
-                <ion-input [(ngModel)]="opcoes[2]"></ion-input>
-              </ion-item>
-    
-            <ion-item>
                 <ion-label>D)  </ion-label>
-                <ion-input [(ngModel)]="opcoes[3]"></ion-input>
+                <ion-input required [(ngModel)]="opcoes[3]" formControlName="d"></ion-input>
               </ion-item>
-    
-            <ion-item>
+              
+              <ion-item>
                 <ion-label>E) </ion-label>
-                <ion-input [(ngModel)]="opcoes[4]"></ion-input>
+                <ion-input required [(ngModel)]="opcoes[4]" formControlName="e"></ion-input>
               </ion-item>
-          </ion-list>
-      
-          <ion-item>
-            <ion-label>Informe a alternativa correta</ion-label>
-            <ion-select [(ngModel)]="resposta">
+            </ion-list>
+            
+            <ion-item>
+              <ion-label>Informe a alternativa correta</ion-label>
+              <ion-select required [(ngModel)]="resposta" formControlName="resposta">
                 <ion-option value="A">A) {{opcoes[0]}} </ion-option>
                 <ion-option value="B">B) {{opcoes[1]}} </ion-option>
                 <ion-option value="C">C) {{opcoes[2]}} </ion-option>
@@ -68,14 +75,16 @@
             </ion-item>
             <ion-item>
               <ion-label>Informe o nível desta questão</ion-label>
-              <ion-select [(ngModel)]="nivel">
-                  <ion-option value="A">Bronze </ion-option>
+              <ion-select required [(ngModel)]="nivel" formControlName="nivel">
+                <ion-option value="A">Bronze </ion-option>
                   <ion-option value="B">Prata </ion-option>
                   <ion-option value="C">Ouro </ion-option>
                   <ion-option value="D">Diamante </ion-option>
                   <ion-option value="E">Desafiante</ion-option>
                 </ion-select>
               </ion-item>
-      </ion-list>
-      <button ion-button color="secondary" clear block>Confirmar</button>
-</ion-content>
+            </ion-list>
+            <button ion-button (click)="salvar()" [disabled]="!form.valid" color="secondary" type="submit" clear block>Confirmar</button>
+          </form>
+          </ion-content>
+          
