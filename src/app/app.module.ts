@@ -13,6 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ProcurandoPage } from '../pages/procurando/procurando';
 import { QuestaoPage } from '../pages/questao/questao';
 import { CriarPage } from '../pages/criar/criar';
+import { ConfigPage } from '../pages/config/config';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CriarPage } from '../pages/criar/criar';
     TabsPage,
     ProcurandoPage,
     QuestaoPage,
-    CriarPage
+    CriarPage,
+    ConfigPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { CriarPage } from '../pages/criar/criar';
     TabsPage,
     ProcurandoPage,
     QuestaoPage,
-    CriarPage
+    CriarPage,
+    ConfigPage
   ],
   providers: [
     StatusBar,
