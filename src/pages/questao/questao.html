@@ -1,0 +1,54 @@
+<!--
+  Generated template for the QuestaoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{titulo}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <p>
+    {{enunciado}}
+  </p>
+  <p>
+    {{autor}}
+  </p>
+  <ion-list radio-group>
+        <ion-list-header>
+          Resposta
+        </ion-list-header>
+      
+        <ion-item>
+          <ion-label>A) {{opcoes[0]}} </ion-label>
+          <ion-radio value="A"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>B) {{opcoes[1]}} </ion-label>
+            <ion-radio value="B"></ion-radio>
+          </ion-item>
+
+        <ion-item>
+            <ion-label>C) {{opcoes[2]}} </ion-label>
+            <ion-radio value="C"></ion-radio>
+          </ion-item>
+
+        <ion-item>
+            <ion-label>D) {{opcoes[3]}} </ion-label>
+            <ion-radio value="D"></ion-radio>
+          </ion-item>
+
+        <ion-item>
+            <ion-label>E) {{opcoes[4]}} </ion-label>
+            <ion-radio value="E"></ion-radio>
+          </ion-item>
+      </ion-list>
+      <button ion-button color="secondary" clear block>Confirmar</button>
+</ion-content>
