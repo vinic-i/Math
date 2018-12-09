@@ -20,6 +20,8 @@ export class CriarPage {
 
 form: FormGroup;
 
+userId="vinicius";
+
   titulo;
   nivel;
   enunciado;
@@ -61,7 +63,8 @@ form: FormGroup;
       enunciado: this.enunciado,
       nivel: this.nivel,
       opcoes: this.opcoes,
-      resposta: this.resposta
+      resposta: this.resposta,
+      userId: this.userId,
     };
 
     this.db.add(questao)
