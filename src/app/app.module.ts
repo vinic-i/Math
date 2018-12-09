@@ -14,6 +14,14 @@ import { ProcurandoPage } from '../pages/procurando/procurando';
 import { QuestaoPage } from '../pages/questao/questao';
 import { CriarPage } from '../pages/criar/criar';
 import { ConfigPage } from '../pages/config/config';
+import { firebase } from './firebase';
+
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { QuestoesDbProvider } from '../providers/questoes-db/questoes-db';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -29,7 +37,11 @@ import { ConfigPage } from '../pages/config/config';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -46,7 +58,8 @@ import { ConfigPage } from '../pages/config/config';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    QuestoesDbProvider
   ]
 })
 export class AppModule {}
