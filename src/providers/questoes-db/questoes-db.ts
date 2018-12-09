@@ -1,6 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection,
+ } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ActionSheet } from '../../../node_modules/ionic-angular/umd';
+
 
 /*
   Generated class for the QuestoesDbProvider provider.
@@ -17,11 +22,12 @@ export interface Questao{
   resposta: string;
   opcoes: string[];
   autor: string;
+  userId: string;
 };
 
 @Injectable()
 export class QuestoesDbProvider {
-
+  private admin: Observable<Questao[]>;
   private Collection: AngularFirestoreCollection<Questao>;
   
 
@@ -29,8 +35,28 @@ export class QuestoesDbProvider {
     this.Collection = db.collection<Questao>("questoes");
   }
 
+  setupAdmin(userId){
+    //this.admin = this.Collection.ref.orderBy("userId").isEqual(userId)
+    this.admin = this.db.collection<Questao>("questoes", ref => ref.where("userId","==", userId))
+    .snapshotChanges().pipe(
+      map(action =>{
+        return action.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data};
+        })
+      })
+    );
+  }
+
   add(questao: Questao){
     return this.Collection.add(questao);
+  }
+
+
+
+  adminHistorico(){
+    return this.admin;
   }
 
 }
