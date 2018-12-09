@@ -66,6 +66,16 @@
                 <ion-option value="E">E) {{opcoes[4]}}</ion-option>
               </ion-select>
             </ion-item>
+            <ion-item>
+              <ion-label>Informe o nível desta questão</ion-label>
+              <ion-select [(ngModel)]="nivel">
+                  <ion-option value="A">Bronze </ion-option>
+                  <ion-option value="B">Prata </ion-option>
+                  <ion-option value="C">Ouro </ion-option>
+                  <ion-option value="D">Diamante </ion-option>
+                  <ion-option value="E">Desafiante</ion-option>
+                </ion-select>
+              </ion-item>
       </ion-list>
       <button ion-button color="secondary" clear block>Confirmar</button>
 </ion-content>

@@ -16,6 +16,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class CriarPage {
 
   titulo;
+  nivel;
   enunciado;
   resposta;
   opcoes = ["","","","",""];
