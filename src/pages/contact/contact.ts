@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthProvider } from '../../providers/auth/auth';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'page-contact',
@@ -7,8 +10,14 @@ import { NavController } from 'ionic-angular';
 })
 export class ContactPage {
 
-  constructor(public navCtrl: NavController) {
+  perfil: Observable<any>;
 
+  constructor(public navCtrl: NavController,
+    private auth: AuthProvider,
+    private db: AngularFirestore) {
+      const user = this.auth.user;
+
+      this.perfil = this.db.doc(`perfis/${user.email}`).valueChanges();
   }
 
 }

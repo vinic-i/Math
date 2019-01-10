@@ -22,6 +22,12 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { QuestoesDbProvider } from '../providers/questoes-db/questoes-db';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { LoginPage } from '../pages/login/login';
+import { WelcomePage } from '../pages/welcome/welcome';
+import { RegistrarPage } from '../pages/registrar/registrar';
+import { AuthProvider } from '../providers/auth/auth';
+import { CriarPerfilPage } from '../pages/criar-perfil/criar-perfil';
+import { DonatePage } from '../pages/donate/donate';
 
 @NgModule({
   declarations: [
@@ -33,7 +39,12 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     ProcurandoPage,
     QuestaoPage,
     CriarPage,
-    ConfigPage
+    ConfigPage,
+    LoginPage,
+    WelcomePage,
+    RegistrarPage,
+    CriarPerfilPage,
+    DonatePage,
   ],
   imports: [
     BrowserModule,
@@ -53,13 +64,19 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     ProcurandoPage,
     QuestaoPage,
     CriarPage,
-    ConfigPage
+    ConfigPage,
+    LoginPage,
+    WelcomePage,
+    RegistrarPage,
+    CriarPerfilPage,
+    DonatePage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    QuestoesDbProvider
+    QuestoesDbProvider,
+    AuthProvider
   ]
 })
 export class AppModule {}

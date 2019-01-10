@@ -1,0 +1,22 @@
+page-welcome {
+
+    .logo-2 {
+        font-family: Pacifico;
+        font-weight: bold;
+        font-size: 5.2em;      
+      }
+
+
+    .items {
+        align-self: center;
+        display: grid;
+        grid-template-rows: 20em auto auto auto;
+    }
+
+    .welcome {
+        width: 100%;
+        height: 100%;
+        display: grid;
+    }
+
+}

@@ -13,27 +13,29 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item>
+    <ion-item *ngIf="perfil | async as p" >
       <ion-avatar item-start>
         <img src="assets/imgs/logo.png">
       </ion-avatar>
-      <h2>Nome do usuário</h2>
-      <h3>Status do Usuário</h3>
-      <p>Elo do Usuário</p>
+      <h2> {{p.nome + ' ' + p.sobrenome}} </h2>
+      <h3>Online</h3>
+      <p>{{ p.elo == 'A' ? 'Bronze' : p.elo == 'B' ? 'Prata' : p.elo == 'C' ? 'Outro' : p.elo == 'D' ? 'Platina' : p.elo == 'E' ? 'Diamante' : p.elo == 'F' ? 'Desafiante' : 'Madeira'}}</p>
     </ion-item>
   </ion-list>
 
 
 <ion-footer>
-  <ion-card>
+  <ion-card *ngIf="found">
+
     <div class="nivel">
       <img class="dificuldade" src="assets/imgs/logo.png" />
       <img class="dificuldade" src="assets/imgs/logo.png" />
       <img class="dificuldade" src="assets/imgs/logo.png" />
     </div>
+
     <ion-card-content>
       <ion-card-title>
-        {{nome_da_questao}}
+        {{questao.titulo}}
       </ion-card-title>
       <ion-row>
         <ion-col>

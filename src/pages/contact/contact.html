@@ -1,11 +1,38 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Perfil
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-slides pager>
+  <ion-slide>
+    <ion-header>
+      <ion-navbar> <ion-title> Perfil </ion-title> </ion-navbar>
+    </ion-header>
 
-<ion-content>
+    <ion-content padding>
+      <div *ngIf="(perfil | async) as p">
+        <ion-list>
+          <ion-item>
+            <ion-avatar item-start>
+              <img src="assets/imgs/logo.png" />
+            </ion-avatar>
+            <h2>{{ p.nome }} {{ p.sobrenome }}</h2>
+            <h3>Status do Usuário</h3>
+            <p>Elo do Usuário</p>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-content>
+  </ion-slide>
 
-</ion-content>
+  <ion-slide>
+    <ion-header>
+      <ion-navbar> <ion-title> Amigos </ion-title> </ion-navbar>
+    </ion-header>
+
+    <ion-content padding> </ion-content>
+  </ion-slide>
+
+  <ion-slide>
+    <ion-header>
+      <ion-navbar> <ion-title> Ranking </ion-title> </ion-navbar>
+    </ion-header>
+
+    <ion-content padding></ion-content>
+  </ion-slide>
+</ion-slides>

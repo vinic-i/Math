@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Questao } from '../../providers/questoes-db/questoes-db';
 
 /**
- * Generated class for the QuestaoPage page.
+ * Generated class for the DonatePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,21 +10,16 @@ import { Questao } from '../../providers/questoes-db/questoes-db';
 
 @IonicPage()
 @Component({
-  selector: 'page-questao',
-  templateUrl: 'questao.html',
+  selector: 'page-donate',
+  templateUrl: 'donate.html',
 })
-export class QuestaoPage {
+export class DonatePage {
 
-  questao: Questao;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.questao= this.navParams.get('questao');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad QuestaoPage');
-  }
-
-  buscar(){
+    console.log('ionViewDidLoad DonatePage');
   }
 
 }
