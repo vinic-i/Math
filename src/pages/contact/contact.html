@@ -5,23 +5,24 @@
     </ion-header>
 
     <ion-content padding>
-      <div *ngIf="(perfil | async) as p">
+      <div *ngIf="p && elo">
         <ion-list>
           <ion-item>
             <ion-avatar item-start>
               <img src="assets/imgs/logo.png" />
             </ion-avatar>
             <h2>{{ p.nome }} {{ p.sobrenome }}</h2>
-            <h3>Status do Usuário</h3>
-            <p>Elo do Usuário</p>
+            <h3>Online</h3>
           </ion-item>
 
           <ion-item>
-            <ion-avatar item-start>              
-              <h1>{{ p.pontos }} </h1>
+            <ion-avatar item-start>
+              <img src="assets/imgs/logo.png" />
             </ion-avatar>
-            <h2>Pontos</h2>
+            <h1>{{elo.nome}}</h1>
+            <h3>{{ elo.estrelas }} / {{ elo.estrelas_totais }} Estrelas </h3>
           </ion-item>
+
         </ion-list>
       </div>
     </ion-content>

@@ -28,6 +28,7 @@ import { RegistrarPage } from '../pages/registrar/registrar';
 import { AuthProvider } from '../providers/auth/auth';
 import { CriarPerfilPage } from '../pages/criar-perfil/criar-perfil';
 import { DonatePage } from '../pages/donate/donate';
+import { EloProvider } from '../providers/elo/elo';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { DonatePage } from '../pages/donate/donate';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     QuestoesDbProvider,
-    AuthProvider
+    AuthProvider,
+    EloProvider
   ]
 })
 export class AppModule {}
