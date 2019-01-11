@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Questao } from '../../providers/questoes-db/questoes-db';
+import { TabsPage } from '../tabs/tabs';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AuthProvider } from '../../providers/auth/auth';
 
 /**
  * Generated class for the QuestaoPage page.
@@ -16,16 +19,49 @@ import { Questao } from '../../providers/questoes-db/questoes-db';
 })
 export class QuestaoPage {
 
+  perfilRef$: AngularFirestoreDocument;
+  eloRef$: AngularFirestoreDocument;
   questao: Questao;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.questao= this.navParams.get('questao');
+  resposta: string;
+
+  constructor(public navCtrl: NavController,
+    private auth: AuthProvider,
+    public navParams: NavParams,
+    private db: AngularFirestore,
+    ) {
+      this.questao = this.navParams.get('questao');
+      this.perfilRef$ = this.db.doc<any>(`perfis/${this.auth.user.email}`);
+      this.eloRef$ = this.db.doc<any>(`regras/elos/elos/${this.questao.nivel}`);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad QuestaoPage');
   }
 
-  buscar(){
+  async verify() {
+    if(this.resposta == this.questao.resposta) {
+      console.log("acertou");
+      let eloRef = await this.eloRef$.get()
+      .toPromise();   
+      
+      let elo = eloRef.data();     
+
+      console.log(elo);  
+      const perfilRef = await this.perfilRef$.get().toPromise();
+
+      let perfil = perfilRef.data();
+
+      console.log(perfil);
+      
+      perfil.pontos = Number(perfil.pontos) + Number(elo.estrela);
+
+      await this.perfilRef$.set(perfil);
+
+      this.navCtrl.setRoot(TabsPage);
+       
+    }else{
+      this.navCtrl.setRoot(TabsPage);
+    }
   }
 
 }

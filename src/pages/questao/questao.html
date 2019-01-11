@@ -22,7 +22,7 @@
       <p>
         {{questao.autor}}
       </p>
-      <ion-list radio-group>
+      <ion-list radio-group [(ngModel)]="resposta" >
             <ion-list-header>
               Resposta
             </ion-list-header>
@@ -52,7 +52,7 @@
                 <ion-radio value="E"></ion-radio>
               </ion-item>
           </ion-list>
-          <button ion-button color="secondary" clear block>Confirmar</button>
+          <button ion-button color="secondary" (click)="verify()" block>Confirmar</button>
 </div>
   
 </ion-content>
