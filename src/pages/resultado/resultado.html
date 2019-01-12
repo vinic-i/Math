@@ -7,13 +7,21 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>resultado</ion-title>
+    <ion-title>Resultado</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
- 
-  
+
+  <h1 class="center">
+    {{resultado}}
+  </h1>
+
+
+  <ion-footer>
+    <button ion-button block (click)="jogarNovamente()"> Jogar Novamente </button>
+    <button ion-button block (click)="voltarParaInicio()"> Inicio </button>
+  </ion-footer>
 </ion-content>

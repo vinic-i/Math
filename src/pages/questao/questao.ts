@@ -4,6 +4,7 @@ import { Questao } from '../../providers/questoes-db/questoes-db';
 import { TabsPage } from '../tabs/tabs';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AuthProvider } from '../../providers/auth/auth';
+import { ResultadoPage } from '../resultado/resultado';
 
 /**
  * Generated class for the QuestaoPage page.
@@ -46,21 +47,17 @@ export class QuestaoPage {
       
       let elo = eloRef.data();     
 
-      console.log(elo);  
       const perfilRef = await this.perfilRef$.get().toPromise();
 
       let perfil = perfilRef.data();
-
-      console.log(perfil);
-      
+  
       perfil.pontos = Number(perfil.pontos) + Number(elo.estrela);
 
       await this.perfilRef$.set(perfil);
 
-      this.navCtrl.setRoot(TabsPage);
-       
+      this.navCtrl.setRoot(ResultadoPage, {resultado: 'Acertou!'});       
     }else{
-      this.navCtrl.setRoot(TabsPage);
+      this.navCtrl.setRoot(ResultadoPage, {resultado: 'Errou!'});
     }
   }
 
