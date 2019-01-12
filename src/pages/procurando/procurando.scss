@@ -1,19 +1,20 @@
 page-procurando {
-.dificuldade{
-    width: 3em;
-    height: 3em;
-}
-.nivel{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-}
+    
+    .dificuldade{
+        width: 3em;
+        height: 3em;
+    }
+    .nivel{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
 
-.grid{
-    display: grid;
-    grid-template-rows: 1fr auto;
-    height: 100%;
-    width: 100%;
-}
+    .grid{
+        display: grid;
+        grid-template-rows: 1fr auto;
+        height: 100%;
+        width: 100%;
+    }
 
 }

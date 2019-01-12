@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { WelcomePage } from '../welcome/welcome';
+import { AuthProvider } from '../../providers/auth/auth';
+import { DonatePage } from '../donate/donate';
 
 /**
  * Generated class for the ConfigPage page.
@@ -15,11 +18,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ConfigPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public appCtrl: App,
+    public navParams: NavParams, 
+    private authProvide: AuthProvider
+    ) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ConfigPage');
+  donate(){
+    this.navCtrl.push(DonatePage);
+  }
+  async sair(){
+    try{
+      await this.authProvide.sign_out();
+      this.appCtrl.getRootNav().setRoot(WelcomePage);
+    }catch(erro){}
   }
 
 }

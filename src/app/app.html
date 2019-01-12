@@ -1,1 +1,12 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<div class="splash_screen" *ngIf="!rootPage">
+    <div class="center">
+        <div class="logo" >
+            Math
+        </div>
+        <div class="loading">
+            Carregando...
+        </div>
+    </div>
+</div>
+    
+<ion-nav *ngIf="rootPage" [root]="rootPage"></ion-nav>
