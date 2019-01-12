@@ -5,7 +5,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Questao } from '../../providers/questoes-db/questoes-db';
-import { map } from 'rxjs/operators';
+import { TabsPage } from '../tabs/tabs';
 
 @IonicPage()
 @Component({
@@ -23,9 +23,11 @@ export class ProcurandoPage {
     private auth: AuthProvider,
     private db: AngularFirestore) {
       const user = this.auth.user;
+      this.elo = this.navParams.get('elo');
+
       this.perfil = this.db.doc(`perfis/${user.email}`).valueChanges();
 
-      this.questoes = this.db.collection<Questao>("questoes", ref => ref.where("nivel","==", this.elo) )
+      this.questoes = this.db.collection<Questao>("questoes", ref => ref.where("nivel","==", this.elo.id) )
       .valueChanges();
   }
 
@@ -33,7 +35,7 @@ export class ProcurandoPage {
   questoes: Observable<Questao[]>;
   questao;
   index = 0;
-  elo = 'B';
+  elo;
 
   found = false;
 
@@ -47,7 +49,10 @@ export class ProcurandoPage {
 
       if(list.length > 0){
         console.log("has questions");
+        
+        this.index = Math.floor(Math.random()*list.length);
 
+        console.log(this.index);
         this.questao = list[this.index];
         this.found = true;
       }
@@ -67,5 +72,9 @@ export class ProcurandoPage {
     this.appCtrl.getRootNav().setRoot(QuestaoPage, {
       questao: this.questao
     });
+  }
+
+  recusar() {    
+    this.navCtrl.setRoot(TabsPage);
   }
 }

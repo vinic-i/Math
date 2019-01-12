@@ -1,10 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection,
+import { AngularFirestore, AngularFirestoreCollection,
  } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ActionSheet } from '../../../node_modules/ionic-angular/umd';
 
 
 /*

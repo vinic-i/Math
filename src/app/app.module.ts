@@ -29,6 +29,8 @@ import { AuthProvider } from '../providers/auth/auth';
 import { CriarPerfilPage } from '../pages/criar-perfil/criar-perfil';
 import { DonatePage } from '../pages/donate/donate';
 import { EloProvider } from '../providers/elo/elo';
+import { SelecionarEloPage } from '../pages/selecionar-elo/selecionar-elo';
+import { ResultadoPage } from '../pages/resultado/resultado';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { EloProvider } from '../providers/elo/elo';
     RegistrarPage,
     CriarPerfilPage,
     DonatePage,
+    SelecionarEloPage,
+    ResultadoPage
   ],
   imports: [
     BrowserModule,
@@ -71,6 +75,8 @@ import { EloProvider } from '../providers/elo/elo';
     RegistrarPage,
     CriarPerfilPage,
     DonatePage,
+    SelecionarEloPage,
+    ResultadoPage
   ],
   providers: [
     StatusBar,

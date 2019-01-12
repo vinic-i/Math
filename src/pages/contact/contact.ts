@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -9,7 +9,7 @@ import { EloProvider } from '../../providers/elo/elo';
   selector: 'page-contact',
   templateUrl: 'contact.html'
 })
-export class ContactPage implements OnInit {
+export class ContactPage implements OnInit, OnDestroy {
 
   perfilRef: AngularFirestoreDocument;
   eloCollectionRef: AngularFirestoreCollection;
@@ -17,6 +17,10 @@ export class ContactPage implements OnInit {
   p;
 
   elo;
+
+  eloSub;
+
+  perfilSub;
 
   constructor(public navCtrl: NavController,
     private auth: AuthProvider,
@@ -29,23 +33,37 @@ export class ContactPage implements OnInit {
   }
 
 
-  async ngOnInit() {
+  ngOnInit() {
     try{
-      await this.loadPerfil();
+      this.loadPerfil();
     }catch(err) {
-
+      console.log(err);
     }
-
   }
 
-  async loadPerfil() {
-    let aPerfil = await this.perfilRef.get().toPromise();
-    this.p = aPerfil.data();
+  ngOnDestroy(){
+    if(this.eloSub) this.eloSub.unsubscribe();
+    if(this.perfilSub) this.perfilSub.unsubscribe();
+  }
 
-    this.elos.eloCollectionRef.valueChanges()
+  estrelas(){
+    return this.elo ? Math.floor(this.elo.estrelas) : 0;
+  }
+
+  loadPerfil() {    
+
+    this.eloSub = this.elos.eloCollectionRef.valueChanges()
     .subscribe(list => {
-      console.log(list);
-      this.elo = this.elos.calcularElo(this.p, list);
+
+      if(this.perfilSub) this.perfilSub.unsubscribe();
+
+      this.perfilSub = this.perfilRef.valueChanges()
+      .subscribe(perfil => {
+
+        this.p = perfil;        
+        this.elo = this.elos.calcularElo(this.p, list);
+      });
+      
     });    
   }
 
