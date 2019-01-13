@@ -32,9 +32,7 @@ export class ProcurandoPage {
       .valueChanges();
   }
 
-  public minutos:number = 0;
-  public segundos:any = 15;
-
+ 
   perfil: Observable<any>;
   questoes: Observable<Questao[]>;
   questao;
@@ -42,9 +40,15 @@ export class ProcurandoPage {
   elo;
 
   found = false;
-  
+
+  public minutos:number = 0;
+  public segundos:any = 15; 
+ cancelar = false;
 inicia(){
     setInterval( ()=>{
+      if(this.cancelar){
+        return;
+      }
       this.segundos -=1;
       if(this.segundos <=9){
         this.segundos = "0" + this.segundos;
@@ -59,7 +63,13 @@ inicia(){
     }
       , 1000);
 }
+stop(){
+  this.cancelar = true;
+}
 
+ionViewWillLeave(){
+  this.stop();
+}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProcurandoPage');
