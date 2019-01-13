@@ -34,6 +34,8 @@ export class QuestaoPage {
       this.perfilRef$ = this.db.doc<any>(`perfis/${this.auth.user.email}`);
       this.eloRef$ = this.db.doc<any>(`regras/elos/elos/${this.questao.nivel}`);
   }
+  
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad QuestaoPage');

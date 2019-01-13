@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar> <ion-title>00:00</ion-title> </ion-navbar>
+  <ion-navbar> <ion-title>0{{minutos}}:{{segundos}}</ion-title> </ion-navbar>
 </ion-header>
 
 <ion-content padding>
@@ -22,11 +22,11 @@
     </ion-card>
   </div>
   <ion-footer>
-    <button ion-button block (click)="aceitar()">
+    <button (click)="stop()" ion-button block (click)="aceitar()">
       <ion-icon name="thumbs-up"></ion-icon>
       <div>Aceitar</div>
     </button>
-    <button ion-button block color="light" (click)="recusar()">
+    <button (click)="stop()" ion-button block color="light" (click)="recusar()">
         <ion-icon name="thumbs-up"></ion-icon>
         <div>Recusar</div>
       </button>

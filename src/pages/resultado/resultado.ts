@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { EloProvider } from '../../providers/elo/elo';
 import { HomePage } from '../home/home';
 import { SelecionarEloPage } from '../selecionar-elo/selecionar-elo';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the ResultadoPage page.
@@ -34,7 +35,7 @@ export class ResultadoPage {
   }
 
   voltarParaInicio() {
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.setRoot(TabsPage);
   }
 
 }

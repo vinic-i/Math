@@ -6,6 +6,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Questao } from '../../providers/questoes-db/questoes-db';
 import { TabsPage } from '../tabs/tabs';
+import { count } from 'rxjs/operators';
 
 @IonicPage()
 @Component({
@@ -31,6 +32,7 @@ export class ProcurandoPage {
       .valueChanges();
   }
 
+ 
   perfil: Observable<any>;
   questoes: Observable<Questao[]>;
   questao;
@@ -39,7 +41,51 @@ export class ProcurandoPage {
 
   found = false;
 
+  public minutos:number = 0;
+  public segundos:any = 15; 
+ cancelar = false;
+inicia(){
+    setInterval( ()=>{
+      if(this.cancelar){
+        return;
+      }
+      this.segundos -=1;
+      if(this.segundos <=9){
+        this.segundos = "0" + this.segundos;
+      }
+      if(this.segundos < 0){{
+        this.segundos = 59;
+        this.minutos -=1;
+      }}
+      if(this.segundos == 0 && this.minutos == 0){
+        this.navCtrl.setRoot(TabsPage);
+      }
+    }
+      , 1000);
+}
+stop(){
+  this.cancelar = true;
+}
 
+ionViewWillLeave(){
+  this.stop();
+}
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ProcurandoPage');
+    this.buscarQuestoes();
+    this.inicia();
+  }
+
+  aceitar (){
+    this.appCtrl.getRootNav().setRoot(QuestaoPage, {
+      questao: this.questao
+    });
+  }
+
+  recusar() {    
+    this.navCtrl.setRoot(TabsPage);
+  }
   buscarQuestoes(){
     console.log('Questões')
 
@@ -61,20 +107,5 @@ export class ProcurandoPage {
 
 
     
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProcurandoPage');
-    this.buscarQuestoes();
-  }
-
-  aceitar (){
-    this.appCtrl.getRootNav().setRoot(QuestaoPage, {
-      questao: this.questao
-    });
-  }
-
-  recusar() {    
-    this.navCtrl.setRoot(TabsPage);
   }
 }
