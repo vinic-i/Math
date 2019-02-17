@@ -19,7 +19,7 @@ export class EloProvider {
 
   calcularElo(perfil, elos){
     let elo = 0;
-    let pontos = perfil.pontos;
+    let pontos = perfil.admin ? perfil.pontos_admin : perfil.pontos;
 
     for (let i = 1; i < elos.length && pontos > 0; i++) {
       const total = elos[i-1].total;

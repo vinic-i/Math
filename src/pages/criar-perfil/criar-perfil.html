@@ -13,15 +13,20 @@
     <ion-list>
       <ion-item>
         <ion-label>Nome</ion-label>
-        <ion-input formControlName="nome" type="text"></ion-input>
+        <ion-input required formControlName="nome" type="text"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>Sobernome</ion-label>
-        <ion-input formControlName="sobrenome" type="text"></ion-input>
+        <ion-input required formControlName="sobrenome" type="text"></ion-input>
       </ion-item>
 
-      <button ion-button (click)="criar()">Continuar</button>
+      <ion-item>
+        <ion-label>Escola</ion-label>
+        <ion-input formControlName="escola" type="text"></ion-input>
+      </ion-item>
+
+      <button [disabled]="!form.valid" style="margin-top: 1em;" block ion-button color="dark" (click)="criar()">Continuar</button>
     </ion-list>
   </form>
 </ion-content>

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title  >
-      Math
+      Sophia
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,8 +9,8 @@
 <ion-content padding>
   <div style="display:grid;width: 100%; height: 100%" *ngIf="perfil | async as p">
     <div style="justify-self: center; align-self: center;" >
-      <button *ngIf= "!p.admin" (click)="jogar()" style="font-size: 2em" ion-button color="primary" >Jogar</button>
-      <button *ngIf= "p.admin" (click)="criar()" style="font-size: 1.5em" ion-button color="primary" >Adicionar Questão</button>
+      <button *ngIf= "!p.admin" (click)="jogar()" style="font-size: 2em" ion-button color="dark" >Jogar</button>
+      <button *ngIf= "p.admin" (click)="criar()" style="font-size: 1.5em" ion-button color="dark" >Adicionar Questão</button>
     </div>
   </div>
 </ion-content>

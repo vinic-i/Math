@@ -1,14 +1,114 @@
+
 page-contact {
 
-    .slide-zoom {
-        height: 100%;
+
+    ion-header {
+        .toolbar {          
+      
+          .toolbar-background {
+            background: black;
+          }
+          .toolbar-title {
+            color: white;
+          }
+        }
+      }
+
+
+  .perfil {
+    display: grid;
+    grid-template-areas:
+      "pontos"
+      "info"
+      "ranking";
+
+    grid-template-rows: auto auto 1fr;
+
+    height: 100%;
+  }
+
+  .pontos {
+    grid-area: pontos;
+
+    position: relative;
+  }
+
+  .pontos::before {
+    position: absolute;
+    content: '';
+    background: black;
+    bottom: 5rem;    
+    top: 0;
+    width: 100%;
+    z-index: -1;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .estrelas {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .estrela {
+    color: #ccc;
+    margin: 0.2em;
+    font-size: 2em;
+  }
+
+  .estrela.active {
+    color: rgb(255, 217, 0);
+  }
+
+  .avatar {
+    height: 10rem;
+    width: 10rem;
+    margin: auto;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    border-radius: 50%;
+    background: white;
+    font-weight: bolder;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .big {
+    font-size: 3em;
+  }
+  .small {
+    font-size: 2em;
+  }
+
+  .info {
+    grid-area: info;
+    text-align: center;
+    font-weight: 100;
+    .title {
+
     }
 
-
-    .nivel{
-        display: flex;
-        width: 100%;
-        justify-content: center;
+    .subtitle {
+      
     }
+  }
 
+  .ranking {
+    grid-area: ranking;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+  }
+
+  .slide-zoom {
+    height: 100%;
+  }
+
+  .nivel {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
 }

@@ -1,46 +1,48 @@
-<ion-slides pager>
-  <ion-slide>
-    <ion-header>
-      <ion-navbar> <ion-title> Perfil </ion-title> </ion-navbar>
-    </ion-header>
+<ion-header>
+  <ion-navbar> <ion-title> Sophia </ion-title> </ion-navbar>
+</ion-header>
 
-    <ion-content padding>
-      <div *ngIf="p && elo">
-        <ion-list>
-          <ion-item>
-            <ion-avatar item-start>
-              <img src="assets/imgs/logo.png" />
-            </ion-avatar>
-            <h2>{{ p.nome }} {{ p.sobrenome }}</h2>
-            <h3>Online</h3>
-          </ion-item>
-
-          <ion-item>
-            <ion-avatar item-start>
-              <img src="assets/imgs/logo.png" />
-            </ion-avatar>
-            <h1>{{elo.nome}}</h1>
-            <h3>{{ estrelas() }} / {{ elo.estrelas_totais }} Estrelas </h3>
-          </ion-item>
-
-        </ion-list>
+<ion-content>
+  <div class="perfil">
+    <div class="pontos">
+      <div class="estrelas" *ngIf="elo">
+        <div *ngFor="let estrela of estrelas" [class]="'estrela' + estrela">
+          <ion-icon slot="icon-only" name="star"></ion-icon>
+        </div>
       </div>
-    </ion-content>
-  </ion-slide>
+      <div class="avatar">
+        <div *ngIf="p">
+          {{ p.admin ? p.pontos_admin : elo.nome }}
+        </div>
+      </div>
+    </div>
 
-  <ion-slide>
-    <ion-header>
-      <ion-navbar> <ion-title> Amigos </ion-title> </ion-navbar>
-    </ion-header>
+    <div *ngIf="p" class="info">
+      <h1 class="title">{{ p.nome }} {{ p.sobrenome }}</h1>
+      <h5 class="subtitle">{{ p.escola }}</h5>
+    </div>
 
-    <ion-content padding> </ion-content>
-  </ion-slide>
+    <div *ngIf="p" class="ranking">
+      <button
+        *ngIf="!p.admin"
+        (click)="jogar()"
+        style="font-size: 2em"
+        ion-button
+        color="dark"
+      >
+        Jogar
+      </button>
+      <br />
+      <button
+        *ngIf="p.admin"
+        (click)="criar()"
+        style="font-size: 1.5em"
+        ion-button
+        color="dark"
+      >
+        Adicionar Questão
+      </button>
 
-  <ion-slide>
-    <ion-header>
-      <ion-navbar> <ion-title> Ranking </ion-title> </ion-navbar>
-    </ion-header>
-
-    <ion-content padding></ion-content>
-  </ion-slide>
-</ion-slides>
+    </div>
+  </div>
+</ion-content>

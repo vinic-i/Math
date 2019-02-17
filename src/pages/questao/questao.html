@@ -20,7 +20,7 @@
         {{questao.enunciado}}
       </p>
       <p>
-        {{questao.autor}}
+        {{ questao.mostrarAutor ? questao.autor : ''}}
       </p>
       <ion-list radio-group [(ngModel)]="resposta" >
             <ion-list-header>

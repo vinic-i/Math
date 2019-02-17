@@ -1,0 +1,26 @@
+page-ranking {
+    
+    .item {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas:
+        'ordem label1 pontos'
+        'ordem label2 pontos';
+    }
+
+    .ordem {
+        grid-area: ordem;
+    }
+
+    .pontos {
+        grid-area: pontos;
+    }
+
+    .label1 {
+        grid-area: label1;
+    }
+
+    .label2 {
+        grid-area: label2;
+    }
+}
