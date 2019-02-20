@@ -29,6 +29,7 @@ export class CriarPerfilPage {
     public loadingController: LoadingController,
     private auth: AuthProvider
   ) {
+    
     this.user = this.auth.user;
     
     this.form = this.formBuilder.group({
@@ -36,7 +37,12 @@ export class CriarPerfilPage {
       sobrenome: [''],
       escola: [''],
     });
+
+    this.editPerfil();
   }
+
+  perfilAtual;
+  perfilAtualRef;
 
   user;
 
@@ -47,10 +53,43 @@ export class CriarPerfilPage {
     console.log('ionViewDidLoad CriarPerfilPage');
   }
 
+  editPerfil() {
+    this.perfilAtual = this.navParams.get("perfil");
+    this.perfilAtualRef = this.navParams.get("perfilRef");
+
+    if(this.perfilAtual){
+      if(!this.perfilAtualRef) {
+        throw new Error("Referência para o perfil não encontrado.");
+      }
+      this.form.controls['nome'].setValue(this.perfilAtual.nome);
+      this.form.controls['sobrenome'].setValue(this.perfilAtual.sobrenome);
+      this.form.controls['escola'].setValue(this.perfilAtual.escola);
+    }
+  }
+
+  async salvar() {
+    try{
+      this.presentLoading();
+      let doc = this.db.doc(this.perfilAtualRef);
+
+      this.perfilAtual.nome = this.form.value.nome;
+      this.perfilAtual.sobrenome = this.form.value.sobrenome;
+      this.perfilAtual.escola = this.form.value.escola;
+
+      await doc.set(this.perfilAtual);
+
+      this.stopLoading();
+      this.navCtrl.pop();
+    }catch(err){
+      this.stopLoading();
+      console.log(err);
+    }
+  }
+
   async criar() {
     this.presentLoading();
     const perfis = this.db.collection("perfis");
-    //perfis.add({...this.form.value, pontos: 0, elo: 'A'});
+
     try{
       const result = await perfis.doc(this.user.email)
       .set({

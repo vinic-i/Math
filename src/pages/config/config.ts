@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { WelcomePage } from '../welcome/welcome';
 import { AuthProvider } from '../../providers/auth/auth';
 import { DonatePage } from '../donate/donate';
+import { CriarPerfilPage } from '../criar-perfil/criar-perfil';
 
 /**
  * Generated class for the ConfigPage page.
@@ -34,6 +35,13 @@ export class ConfigPage {
       await this.authProvide.sign_out();
       this.appCtrl.getRootNav().setRoot(WelcomePage);
     }catch(erro){}
+  }
+
+  editarPerfil(){
+    if(!this.authProvide.perfil){
+      return;
+    }
+    this.navCtrl.push(CriarPerfilPage, {perfil: this.authProvide.perfil, perfilRef: this.authProvide.perfilRef});
   }
 
 }

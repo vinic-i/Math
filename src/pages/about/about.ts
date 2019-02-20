@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Questao, QuestoesDbProvider } from '../../providers/questoes-db/questoes-db';
 import { Observable } from 'rxjs';
 import { AuthProvider } from '../../providers/auth/auth';
+import { VisualizarQuestaoPage } from '../visualizar-questao/visualizar-questao';
 
 @Component({
   selector: 'page-about',
@@ -16,6 +17,11 @@ export class AboutPage implements OnInit{
 
   }
   
+  vizualizar(questao){
+    this.navCtrl.push( VisualizarQuestaoPage, {questao: questao} );
+  }
+
+
   ngOnInit(){
     this.db.setupAdmin(this.auth.user.uid);
     this.questoes = this.db.adminHistorico();

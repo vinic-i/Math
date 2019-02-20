@@ -7,6 +7,7 @@ import { RankingPage } from '../ranking/ranking';
 import { CriarPerfilPage } from '../criar-perfil/criar-perfil';
 import { SelecionarEloPage } from '../selecionar-elo/selecionar-elo';
 import { CriarPage } from '../criar/criar';
+import { NiveisPage } from '../niveis/niveis';
 
 
 @Component({
@@ -15,9 +16,10 @@ import { CriarPage } from '../criar/criar';
 })
 export class ContactPage implements OnInit, OnDestroy {
 
-  perfilRef: AngularFirestoreDocument;
+  perfilRef$: AngularFirestoreDocument;
   eloCollectionRef: AngularFirestoreCollection;
 
+  user;
   perfil;
   p;
 
@@ -34,10 +36,10 @@ export class ContactPage implements OnInit, OnDestroy {
     private elos: EloProvider,
     public appCtrl: App,
     private db: AngularFirestore) {
-      const user = this.auth.user;
+      this.user = this.auth.user;
 
-      this.perfilRef = this.db.doc(`perfis/${user.email}`);
-      this.perfilRef.valueChanges()
+      this.perfilRef$ = this.db.doc(`perfis/${this.user.email}`);
+      this.perfilRef$.valueChanges()
       .subscribe(data => {
         if(!data){
           this.criarPerfil();
@@ -67,6 +69,8 @@ export class ContactPage implements OnInit, OnDestroy {
   }
 
   loadPerfil(perfil) {
+    
+    
     this.eloSub = this.elos.eloCollectionRef.valueChanges()
     .subscribe(list => {
       this.p = perfil;        
@@ -84,7 +88,14 @@ export class ContactPage implements OnInit, OnDestroy {
       for (let index = 0; index < total - val; index++) {
         this.estrelas.push(" ");       
       }
-    });    
+    });
+
+    this.updateAuthPerfilStatus(perfil);
+  }
+
+  updateAuthPerfilStatus(perfil){
+    this.auth.perfil = perfil;
+    this.auth.perfilRef = `perfis/${this.user.email}`;
   }
 
   valueSize(){
@@ -101,6 +112,10 @@ export class ContactPage implements OnInit, OnDestroy {
 
   goToRanking(){
     this.navCtrl.push( RankingPage, {perfil: this.p} );
+  }
+  
+  niveis(){
+    this.navCtrl.push(NiveisPage);
   }
 
 }
