@@ -5,54 +5,52 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title *ngIf="!questao">Carregando...</ion-title>
-    <ion-title *ngIf="questao">{{questao.titulo}}</ion-title>
+    <ion-title *ngIf="questao">{{ questao.titulo }}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-<div *ngIf="questao">
+  <div *ngIf="questao">
     <p>
-        {{questao.enunciado}}
-      </p>
-      <p>
-        {{questao.autor}}
-      </p>
-      <ion-list radio-group [(ngModel)]="resposta" >
-            <ion-list-header>
-              Resposta
-            </ion-list-header>
-          
-            <ion-item>
-              <ion-label>A) {{questao.opcoes[0]}} </ion-label>
-              <ion-radio value="A"></ion-radio>
-            </ion-item>
-    
-            <ion-item>
-                <ion-label>B) {{questao.opcoes[1]}} </ion-label>
-                <ion-radio value="B"></ion-radio>
-              </ion-item>
-    
-            <ion-item>
-                <ion-label>C) {{questao.opcoes[2]}} </ion-label>
-                <ion-radio value="C"></ion-radio>
-              </ion-item>
-    
-            <ion-item>
-                <ion-label>D) {{questao.opcoes[3]}} </ion-label>
-                <ion-radio value="D"></ion-radio>
-              </ion-item>
-    
-            <ion-item>
-                <ion-label>E) {{questao.opcoes[4]}} </ion-label>
-                <ion-radio value="E"></ion-radio>
-              </ion-item>
-          </ion-list>
-          <button ion-button color="secondary" (click)="verify()" block>Confirmar</button>
-</div>
-  
+      {{ questao.enunciado }}
+    </p>
+    <p>
+      {{ questao.mostrarAutor ? questao.autor : "" }}
+    </p>
+    <ion-list radio-group [(ngModel)]="resposta">
+      <ion-list-header>
+        Resposta
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>A) {{ questao.opcoes[0] }} </ion-label>
+        <ion-radio value="A"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>B) {{ questao.opcoes[1] }} </ion-label>
+        <ion-radio value="B"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>C) {{ questao.opcoes[2] }} </ion-label>
+        <ion-radio value="C"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>D) {{ questao.opcoes[3] }} </ion-label>
+        <ion-radio value="D"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>E) {{ questao.opcoes[4] }} </ion-label>
+        <ion-radio value="E"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <button ion-button color="secondary" (click)="verify()" block>
+      Confirmar
+    </button>
+  </div>
 </ion-content>

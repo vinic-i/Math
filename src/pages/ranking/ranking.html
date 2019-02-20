@@ -1,0 +1,27 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title >Ranking</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card
+    *ngFor="let item of ranking | async; let i = index ">
+    <ion-card-header>
+      <h1>{{i+1}}</h1>
+    </ion-card-header>
+  
+    <ion-card-content >
+      <h2>{{ item.nome }} {{ item.sobrenome }}</h2>
+      <h3 style="color: #ccc;" >{{ item.escola }}</h3>
+      <ion-label style="    text-align: right;">
+        <ion-icon slot="start" name="star" ></ion-icon>
+        {{ item.admin ? item.pontos_admin : item.pontos }}
+      </ion-label>
+    </ion-card-content>
+  </ion-card>
+    
+</ion-content>

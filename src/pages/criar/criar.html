@@ -17,11 +17,6 @@
     <ion-list>
       
       <ion-item>
-        <ion-label stacked>Autor</ion-label>
-        <ion-input required [(ngModel)]="autor" formControlName="autor" type="text"></ion-input>
-      </ion-item>
-      
-      <ion-item>
         <ion-label stacked>Nome da questão</ion-label>
         <ion-input required [(ngModel)]="titulo" formControlName="titulo" type="text"></ion-input>
       </ion-item>
@@ -76,15 +71,19 @@
             <ion-item>
               <ion-label>Informe o nível desta questão</ion-label>
               <ion-select required [(ngModel)]="nivel" formControlName="nivel">
-                <ion-option value="A">Bronze </ion-option>
-                  <ion-option value="B">Prata </ion-option>
-                  <ion-option value="C">Ouro </ion-option>
-                  <ion-option value="D">Diamante </ion-option>
-                  <ion-option value="E">Desafiante</ion-option>
+                <ion-option value="A">Nível 1 </ion-option>
+                  <ion-option value="B">Nível 2 </ion-option>
+                  <ion-option value="C">Nível 3 </ion-option>
+                  <ion-option value="D">Nível 4 </ion-option>
+                  <ion-option value="E">Nível 5</ion-option>
                 </ion-select>
               </ion-item>
+              <ion-item>
+                <ion-label>Identificar autor da questão</ion-label>
+                <ion-checkbox required [(ngModel)]="mostrarAutor" formControlName="mostrarAutor" color="dark" checked="true"></ion-checkbox>
+              </ion-item>
             </ion-list>
-            <button ion-button (click)="salvar()" [disabled]="!form.valid" color="secondary" type="submit" clear block>Confirmar</button>
+            <button ion-button (click)="salvar()" [disabled]="!form.valid" color="secondary" type="submit" block>Confirmar</button>
           </form>
           </ion-content>
           

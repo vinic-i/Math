@@ -17,6 +17,8 @@ export class AuthProvider {
   }
 
   user;
+  perfil;
+  perfilRef;
 
   async Google(){
     const data = await this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
@@ -36,6 +38,8 @@ export class AuthProvider {
 
   async sign_out(){
     this.user = null;
+    this.perfil = null;
+    this.perfilRef = null;
     await this.afAuth.auth.signOut();
   }
 

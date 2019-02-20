@@ -31,6 +31,9 @@ import { DonatePage } from '../pages/donate/donate';
 import { EloProvider } from '../providers/elo/elo';
 import { SelecionarEloPage } from '../pages/selecionar-elo/selecionar-elo';
 import { ResultadoPage } from '../pages/resultado/resultado';
+import { RankingPage } from '../pages/ranking/ranking';
+import { VisualizarQuestaoPage } from '../pages/visualizar-questao/visualizar-questao';
+import { NiveisPage } from '../pages/niveis/niveis';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,10 @@ import { ResultadoPage } from '../pages/resultado/resultado';
     CriarPerfilPage,
     DonatePage,
     SelecionarEloPage,
-    ResultadoPage
+    ResultadoPage,
+    RankingPage,
+    VisualizarQuestaoPage,
+    NiveisPage,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +82,10 @@ import { ResultadoPage } from '../pages/resultado/resultado';
     CriarPerfilPage,
     DonatePage,
     SelecionarEloPage,
-    ResultadoPage
+    ResultadoPage,
+    RankingPage,
+    VisualizarQuestaoPage,
+    NiveisPage,
   ],
   providers: [
     StatusBar,
