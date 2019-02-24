@@ -34,6 +34,9 @@ import { ResultadoPage } from '../pages/resultado/resultado';
 import { RankingPage } from '../pages/ranking/ranking';
 import { VisualizarQuestaoPage } from '../pages/visualizar-questao/visualizar-questao';
 import { NiveisPage } from '../pages/niveis/niveis';
+import { PropagandaPage } from '../pages/propaganda/propaganda';
+import { AdMobFree } from '@ionic-native/admob-free';
+
 
 @NgModule({
   declarations: [
@@ -56,6 +59,7 @@ import { NiveisPage } from '../pages/niveis/niveis';
     RankingPage,
     VisualizarQuestaoPage,
     NiveisPage,
+    PropagandaPage
   ],
   imports: [
     BrowserModule,
@@ -86,6 +90,7 @@ import { NiveisPage } from '../pages/niveis/niveis';
     RankingPage,
     VisualizarQuestaoPage,
     NiveisPage,
+    PropagandaPage
   ],
   providers: [
     StatusBar,
@@ -93,7 +98,8 @@ import { NiveisPage } from '../pages/niveis/niveis';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     QuestoesDbProvider,
     AuthProvider,
-    EloProvider
+    EloProvider,
+    AdMobFree
   ]
 })
 export class AppModule {}
