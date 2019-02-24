@@ -20,7 +20,7 @@ import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeRewardVideoConfig } from '@i
 export class PropagandaPage {
 
   constructor(private admobFree: AdMobFree, private platform: Platform) {
-    this.mostrarPropaganda();
+    //this.mostrarPropaganda();
   }
 
   ionViewDidLoad() {
@@ -32,7 +32,7 @@ export class PropagandaPage {
       // add your config here
       // for the sake of this example we will just use the test config
       id: 'ca-app-pub-6179267970764546/1728319721',
-      isTesting: true,
+      isTesting: false,
       autoShow: true
     };
     this.admobFree.banner.config(bannerConfig);
@@ -47,14 +47,16 @@ export class PropagandaPage {
 
   showRewardVideoAds(){
           let RewardVideoConfig: AdMobFreeRewardVideoConfig = {
+              id: "ca-app-pub-6179267970764546/9122544262",
               isTesting: true, // Remove in production
               autoShow: true//,
-              //id: "ca-app-pub-6179267970764546/9122544262"
           };
           this.admobFree.rewardVideo.config(RewardVideoConfig);
           this.admobFree.rewardVideo.prepare().then(() => {
             alert("RewardVideoConfig");
           }).catch(e => alert(e));
       }
+
+    
 
 }
