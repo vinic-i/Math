@@ -32,8 +32,7 @@ export class TabsPage {
     const bannerConfig: AdMobFreeBannerConfig = {
       // add your config here
       // for the sake of this example we will just use the test config
-      id: 'ca-app-pub-6179267970764546/1728319721',
-      isTesting: true,
+      id: 'ca-app-pub-6179267970764546/1728319721',      
       autoShow: true
     };
     this.admobFree.banner.config(bannerConfig);

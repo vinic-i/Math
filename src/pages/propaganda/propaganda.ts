@@ -19,44 +19,61 @@ import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeRewardVideoConfig } from '@i
 })
 export class PropagandaPage {
 
-  constructor(private admobFree: AdMobFree, private platform: Platform) {
-    //this.mostrarPropaganda();
+  enableButton = false;
+  iosVideo = "";
+  androidVideo = "ca-app-pub-6179267970764546/9122544262";
+
+  constructor(private admob: AdMobFree, private platform: Platform) {
+    
+    document.addEventListener('admob.interstitial.events.CLOSE', (event) => {
+      // do something
+
+    });
   }
 
   ionViewDidLoad() {
-    //this.mostrarPropaganda();
   }
 
-  mostrarPropaganda() {
-    const bannerConfig: AdMobFreeBannerConfig = {
-      // add your config here
-      // for the sake of this example we will just use the test config
-      id: 'ca-app-pub-6179267970764546/1728319721',
-      isTesting: false,
-      autoShow: true
-    };
-    this.admobFree.banner.config(bannerConfig);
-
-    this.admobFree.banner.prepare()
-      .then(() => {
-        // banner Ad is ready
-        // if we set autoShow to false, then we will need to call the show method here
-      })
-      .catch(e => console.log(e));
+  mostrarVideoComRecompensa() {
+    this.prepareVideo()
+    .then(result => {
+      console.log(result);
+    })
+    .catch(err => console.log(err));
   }
 
-  showRewardVideoAds(){
-          let RewardVideoConfig: AdMobFreeRewardVideoConfig = {
-              id: "ca-app-pub-6179267970764546/9122544262",
-              isTesting: true, // Remove in production
-              autoShow: true//,
-          };
-          this.admobFree.rewardVideo.config(RewardVideoConfig);
-          this.admobFree.rewardVideo.prepare().then(() => {
-            alert("RewardVideoConfig");
-          }).catch(e => alert(e));
+
+  prepareVideo() {
+
+    return new Promise(resolve => {
+      var aID: string = "";
+
+      if (this.platform.is("ios")) {
+        aID = this.iosVideo;//your ad-id from admob for the appropriate ad-unit
+      } else {
+        aID = this.androidVideo;//your ad-id from admob for the appropriate ad-unit
       }
 
-    
+      const rewardVideoConfig: AdMobFreeRewardVideoConfig = {
+        isTesting: true,
+        autoShow: true,
+        id: aID
+      };
+      console.log("AdMob enabled");
+      this.admob.rewardVideo.config(rewardVideoConfig);
+      this.admob.rewardVideo.prepare().then(() => {
+        //if autoShow false then show here
+        this.admob.rewardVideo.show();
+        console.log("AdMob");
+
+        document.addEventListener("admob.rewardvideo.events.REWARD", (event) => {
+          console.log("User watched entire ad");
+          //user watched the ad. REWARD THEM HERE
+        });
+        resolve();
+      }).catch(e => console.log(e));
+    });
+
+  }
 
 }

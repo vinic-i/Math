@@ -29,7 +29,7 @@ export class ConfigPage {
   }
 
   donate(){
-    this.navCtrl.push(PropagandaPage);
+    this.navCtrl.push(DonatePage);
   }
   async sair(){
     try{
