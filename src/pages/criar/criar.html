@@ -17,19 +17,19 @@
     <ion-list>
       
       <ion-item>
-        <ion-label stacked>Nome da questão</ion-label>
+        <ion-label stacked>Título</ion-label>
         <ion-input required [(ngModel)]="titulo" formControlName="titulo" type="text"></ion-input>
       </ion-item>
       
       <ion-item>
-        <ion-label stacked>Enunciado da questão</ion-label>
+        <ion-label stacked>Enunciado</ion-label>
         <ion-textarea required [(ngModel)]="enunciado" formControlName="enunciado" placeholder=""></ion-textarea>
       </ion-item>
       
       
       <ion-list>
         <ion-list-header>
-          Resposta
+          Alternativas
             </ion-list-header>
             
             <ion-item>
@@ -59,7 +59,7 @@
             </ion-list>
             
             <ion-item>
-              <ion-label>Informe a alternativa correta</ion-label>
+              <ion-label>Alternativa correta</ion-label>
               <ion-select required [(ngModel)]="resposta" formControlName="resposta">
                 <ion-option value="A">A) {{opcoes[0]}} </ion-option>
                 <ion-option value="B">B) {{opcoes[1]}} </ion-option>
@@ -69,7 +69,7 @@
               </ion-select>
             </ion-item>
             <ion-item>
-              <ion-label>Informe o nível desta questão</ion-label>
+              <ion-label>Nível da questão</ion-label>
               <ion-select required [(ngModel)]="nivel" formControlName="nivel">
                 <ion-option value="A">Nível 1 </ion-option>
                   <ion-option value="B">Nível 2 </ion-option>
@@ -79,11 +79,11 @@
                 </ion-select>
               </ion-item>
               <ion-item>
-                <ion-label>Identificar autor da questão</ion-label>
-                <ion-checkbox required [(ngModel)]="mostrarAutor" formControlName="mostrarAutor" color="dark" checked="true"></ion-checkbox>
+                <ion-label>Identificar autor</ion-label>
+                <ion-checkbox [(ngModel)]="mostrarAutor" formControlName="mostrarAutor" color="dark" checked="true"></ion-checkbox>
               </ion-item>
             </ion-list>
-            <button ion-button (click)="salvar()" [disabled]="!form.valid" color="secondary" type="submit" block>Confirmar</button>
+            <button ion-button (click)="salvar()" [disabled]="!form.valid" color="primary" type="submit" block>Confirmar</button>
           </form>
           </ion-content>
           

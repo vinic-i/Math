@@ -36,7 +36,7 @@ export class CriarPage {
   resposta;
   opcoes = ["", "", "", "", ""];
   autor;
-  mostrarAutor;
+  mostrarAutor = true;
 
 
 

@@ -2,11 +2,11 @@
   <ion-navbar> <ion-title> Sophia </ion-title> </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="gradiente-bg">
   <div class="perfil">
     <div class="pontos">
       <div class="estrelas" *ngIf="elo">
-        <div *ngFor="let estrela of estrelas" [class]="'estrela' + estrela">
+        <div color="light" *ngFor="let estrela of estrelas" [class]="'estrela' + estrela">
           <ion-icon slot="icon-only" name="star"></ion-icon>
         </div>
       </div>
@@ -32,7 +32,6 @@
       >
         Jogar
       </button>
-      <br />
       <button
         *ngIf="p.admin"
         (click)="criar()"
@@ -40,11 +39,10 @@
         ion-button
         color="dark"
       >
-        Adicionar Questão
+        Nova Questão
       </button>
-      
-      <button  (click)="niveis()" style="font-size: 1.5em" ion-button color="dark" >Níveis</button>
-
+      <br>
+      <button  (click)="niveis()" style="font-size: 1.5em" ion-button >Níveis</button>
 
     </div>
   </div>

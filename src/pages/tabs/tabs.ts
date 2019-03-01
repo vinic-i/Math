@@ -20,12 +20,12 @@ export class TabsPage {
 
 
   constructor(private admobFree: AdMobFree, private platform: Platform) {
-    this.platform.ready().then(() => {
-      this.mostrarPropaganda();
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    // this.platform.ready().then(() => {
+    //   this.mostrarPropaganda();
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // });
   }
 
   mostrarPropaganda() {
