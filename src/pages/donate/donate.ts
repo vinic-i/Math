@@ -28,11 +28,11 @@ export class DonatePage {
   }
 
   verPropaganda() {
-    this.prepareVideo()
-    .then(result => {
-      console.log(result);
-    })
-    .catch(err => console.log(err));
+    // this.prepareVideo()
+    // .then(result => {
+    //   console.log(result);
+    // })
+    // .catch(err => console.log(err));
   }
 
   fazerDoacao(){
@@ -44,36 +44,36 @@ export class DonatePage {
   }
 
 
-  prepareVideo() {
+  // prepareVideo() {
 
-    return new Promise(resolve => {
-      var aID: string = "";
+  //   return new Promise(resolve => {
+  //     var aID: string = "";
 
-      if (this.platform.is("ios")) {
-        aID = this.iosVideo;//your ad-id from admob for the appropriate ad-unit
-      } else {
-        aID = this.androidVideo;//your ad-id from admob for the appropriate ad-unit
-      }
+  //     if (this.platform.is("ios")) {
+  //       aID = this.iosVideo;//your ad-id from admob for the appropriate ad-unit
+  //     } else {
+  //       aID = this.androidVideo;//your ad-id from admob for the appropriate ad-unit
+  //     }
 
-      const rewardVideoConfig: AdMobFreeRewardVideoConfig = {
-        isTesting: true,
-        autoShow: true,
-        id: aID
-      };
-      console.log("AdMob enabled");
-      this.admob.rewardVideo.config(rewardVideoConfig);
-      this.admob.rewardVideo.prepare().then(() => {
-        //if autoShow false then show here
-        this.admob.rewardVideo.show();
-        console.log("AdMob");
+  //     const rewardVideoConfig: AdMobFreeRewardVideoConfig = {
+  //       isTesting: true,
+  //       autoShow: true,
+  //       id: aID
+  //     };
+  //     console.log("AdMob enabled");
+  //     this.admob.rewardVideo.config(rewardVideoConfig);
+  //     this.admob.rewardVideo.prepare().then(() => {
+  //       //if autoShow false then show here
+  //       this.admob.rewardVideo.show();
+  //       console.log("AdMob");
 
-        document.addEventListener("admob.rewardvideo.events.REWARD", (event) => {
-          this.doacao = true;
-        });
-        resolve();
-      }).catch(e => console.log(e));
-    });
+  //       document.addEventListener("admob.rewardvideo.events.REWARD", (event) => {
+  //         this.doacao = true;
+  //       });
+  //       resolve();
+  //     }).catch(e => console.log(e));
+  //   });
 
-  }
+  // }
 
 }
