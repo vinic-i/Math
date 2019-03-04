@@ -12,78 +12,113 @@
 </ion-header>
 
 <ion-content padding>
-  <form [formGroup]="form" >
+  <form [formGroup]="form">
 
-    <ion-list>
-      
-      <ion-item>
-        <ion-label stacked>Título</ion-label>
-        <ion-input required [(ngModel)]="titulo" formControlName="titulo" type="text"></ion-input>
-      </ion-item>
-      
-      <ion-item>
-        <ion-label stacked>Enunciado</ion-label>
-        <ion-textarea required [(ngModel)]="enunciado" formControlName="enunciado" placeholder=""></ion-textarea>
-      </ion-item>
-      
-      
-      <ion-list>
-        <ion-list-header>
-          Alternativas
-            </ion-list-header>
-            
+
+    <ion-card>
+      <ion-card-header>
+        <h1>Descrição da questão</h1>
+      </ion-card-header>
+
+
+        <ion-list>
+
+          <ion-item>
+            <ion-label stacked>Título</ion-label>
+            <ion-input required [(ngModel)]="titulo" formControlName="titulo" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label stacked>Enunciado</ion-label>
+            <ion-textarea style="min-height: 40px;" maxLength="500" #textarea (keyup)="resize()" required [(ngModel)]="enunciado" formControlName="enunciado" placeholder=""></ion-textarea>
+          </ion-item>
+
+        </ion-list>
+    </ion-card>
+
+
+
+    <ion-card>
+      <ion-card-header>
+        <h1>
+          Alternativas</h1>
+      </ion-card-header>
+
+        <ion-list>
+          <ion-item>
+            <ion-label>A) </ion-label>
+            <ion-input required [(ngModel)]="opcoes[0]" formControlName="a"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>B) </ion-label>
+            <ion-input required [(ngModel)]="opcoes[1]" formControlName="b"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>C) </ion-label>
+            <ion-input required [(ngModel)]="opcoes[2]" formControlName="c"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>D) </ion-label>
+            <ion-input required [(ngModel)]="opcoes[3]" formControlName="d"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>E) </ion-label>
+            <ion-input required [(ngModel)]="opcoes[4]" formControlName="e"></ion-input>
+          </ion-item>
+        </ion-list>
+    </ion-card>
+
+
+    <ion-card>
+
+    <ion-card-header>
+        <h1 style="white-space: initial;">
+          {{titulo}} </h1>
+      </ion-card-header>
+      <ion-card-content>
+        <p style="text-align: justify;
+        text-justify: inter-word;">
+          {{enunciado}}
+        </p>
+        
+        <p style="text-align: right;">
+            {{ mostrarAutor ? "By: " + autor : "  " }}
+          </p>
+        <br>
+        <ion-list>
             <ion-item>
-              <ion-label>A) </ion-label>
-              <ion-input required [(ngModel)]="opcoes[0]"  formControlName="a" ></ion-input>
+              <ion-label>Identificar autor</ion-label>
+              <ion-checkbox [(ngModel)]="mostrarAutor" formControlName="mostrarAutor" color="dark" checked="true"></ion-checkbox>
             </ion-item>
+
             
-            <ion-item>
-              <ion-label>B) </ion-label>
-              <ion-input required [(ngModel)]="opcoes[1]"  formControlName="b" ></ion-input>
-            </ion-item>
-            
-            <ion-item>
-              <ion-label>C) </ion-label>
-              <ion-input required [(ngModel)]="opcoes[2]" formControlName="c" ></ion-input>
-            </ion-item>
-    
-            <ion-item>
-                <ion-label>D)  </ion-label>
-                <ion-input required [(ngModel)]="opcoes[3]" formControlName="d"></ion-input>
-              </ion-item>
-              
-              <ion-item>
-                <ion-label>E) </ion-label>
-                <ion-input required [(ngModel)]="opcoes[4]" formControlName="e"></ion-input>
-              </ion-item>
-            </ion-list>
-            
-            <ion-item>
-              <ion-label>Alternativa correta</ion-label>
-              <ion-select required [(ngModel)]="resposta" formControlName="resposta">
-                <ion-option value="A">A) {{opcoes[0]}} </ion-option>
-                <ion-option value="B">B) {{opcoes[1]}} </ion-option>
-                <ion-option value="C">C) {{opcoes[2]}} </ion-option>
-                <ion-option value="D">D) {{opcoes[3]}} </ion-option>
-                <ion-option value="E">E) {{opcoes[4]}}</ion-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label>Nível da questão</ion-label>
-              <ion-select required [(ngModel)]="nivel" formControlName="nivel">
-                <ion-option value="A">Nível 1 </ion-option>
-                  <ion-option value="B">Nível 2 </ion-option>
-                  <ion-option value="C">Nível 3 </ion-option>
-                  <ion-option value="D">Nível 4 </ion-option>
-                  <ion-option value="E">Nível 5</ion-option>
-                </ion-select>
-              </ion-item>
-              <ion-item>
-                <ion-label>Identificar autor</ion-label>
-                <ion-checkbox [(ngModel)]="mostrarAutor" formControlName="mostrarAutor" color="dark" checked="true"></ion-checkbox>
-              </ion-item>
-            </ion-list>
-            <button ion-button (click)="salvar()" [disabled]="!form.valid" color="primary" type="submit" block>Confirmar</button>
-          </form>
-          </ion-content>
-          
+          <ion-item>
+            <ion-label>Alternativa correta</ion-label>
+            <ion-select required [(ngModel)]="resposta" formControlName="resposta">
+              <ion-option value="A">A) {{opcoes[0]}} </ion-option>
+              <ion-option value="B">B) {{opcoes[1]}} </ion-option>
+              <ion-option value="C">C) {{opcoes[2]}} </ion-option>
+              <ion-option value="D">D) {{opcoes[3]}} </ion-option>
+              <ion-option value="E">E) {{opcoes[4]}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Nível da questão</ion-label>
+            <ion-select required [(ngModel)]="nivel" formControlName="nivel">
+              <ion-option value="A">Nível 1 </ion-option>
+              <ion-option value="B">Nível 2 </ion-option>
+              <ion-option value="C">Nível 3 </ion-option>
+              <ion-option value="D">Nível 4 </ion-option>
+              <ion-option value="E">Nível 5</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <button ion-button (click)="salvar()" [disabled]="!form.valid" color="primary" type="submit" block>Confirmar</button>
+      </ion-card-content>
+    </ion-card>
+  </form>
+</ion-content>

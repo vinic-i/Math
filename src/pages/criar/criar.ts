@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ElementRef, ViewChild } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import {
   QuestoesDbProvider,
@@ -38,7 +38,8 @@ export class CriarPage {
   autor;
   mostrarAutor = true;
 
-
+  @ViewChild('textarea')
+  myInput: ElementRef;
 
 
 
@@ -99,6 +100,11 @@ export class CriarPage {
     if(this.subPontosProfessor){
       this.subPontosProfessor.unsubscribe();
     }
+  }
+
+  resize() {
+    if(!this.myInput) return;
+    this.myInput['_elementRef'].nativeElement.style.height = this.myInput['_elementRef'].nativeElement.scrollHeight + 'px';
   }
 
   salvar() {

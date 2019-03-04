@@ -10,7 +10,7 @@
           <ion-icon slot="icon-only" name="star"></ion-icon>
         </div>
       </div>
-      <div class="avatar">
+      <div class="avatar" color="primary">
         <div *ngIf="p">
           {{ p.admin ? p.pontos_admin : elo.nome }}
         </div>
@@ -28,7 +28,6 @@
         (click)="jogar()"
         style="font-size: 2em"
         ion-button
-        color="dark"
       >
         Jogar
       </button>
@@ -37,12 +36,11 @@
         (click)="criar()"
         style="font-size: 1.5em"
         ion-button
-        color="dark"
       >
         Nova Questão
       </button>
       <br>
-      <button  (click)="niveis()" style="font-size: 1.5em" ion-button >Níveis</button>
+      <button  (click)="niveis()" style="font-size: 1.5em" color="dark" ion-button >Níveis</button>
 
     </div>
   </div>
