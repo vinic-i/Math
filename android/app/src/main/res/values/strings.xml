@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Sophia</string>
     <string name="title_activity_main">Sophia</string>
-    <string name="package_name">br.com.viniciushs.sophia</string>
-    <string name="fileprovider_authority">br.com.viniciushs.sophia.fileprovider</string>
-    <string name="custom_url_scheme">br.com.viniciushs.sophia</string>
+    <string name="package_name">tk.vhstudio.sophia</string>
+    <string name="fileprovider_authority">tk.vhstudio.sophia.fileprovider</string>
+    <string name="custom_url_scheme">tk.vhstudio.sophia</string>
 </resources>

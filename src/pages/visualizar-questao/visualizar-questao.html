@@ -14,46 +14,63 @@
 
 
 <ion-content padding>
+
   <div *ngIf="questao">
-    <p>
-      {{ questao.enunciado }}
-    </p>
-    <p style="text-align: right;">
-      {{ questao.mostrarAutor ? "By: " + questao.autor : "" }}
-    </p>
-    <ion-list >
-      <ion-list-header>
-        Opções
-      </ion-list-header>
+    <ion-card>
+      <ion-card-header>
+        <h1>Enunciado</h1>
+      </ion-card-header>
 
-      <ion-item>
-        <ion-label>A) {{ questao.opcoes[0] }} </ion-label>
-      </ion-item>
+      <ion-card-content>
+        <p>
+          {{ questao.enunciado }}
+        </p>
+        <p style="text-align: right;">
+          {{ questao.mostrarAutor ? "By: " + questao.autor : "" }}
+        </p>
+      </ion-card-content>
+    </ion-card>
 
-      <ion-item>
-        <ion-label>B) {{ questao.opcoes[1] }} </ion-label>
-      </ion-item>
+    <ion-card>
+      <ion-card-header>
+        <h1>
+          Opções</h1>
+      </ion-card-header>
 
-      <ion-item>
-        <ion-label>C) {{ questao.opcoes[2] }} </ion-label>
-      </ion-item>
+      <ion-card-content>
 
-      <ion-item>
-        <ion-label>D) {{ questao.opcoes[3] }} </ion-label>
-      </ion-item>
+          <p>
+            <ion-label>A) {{ questao.opcoes[0] }} </ion-label>
+          </p>
 
-      <ion-item>
-        <ion-label>E) {{ questao.opcoes[4] }} </ion-label>
-      </ion-item>
+          <p>
+            <ion-label>B) {{ questao.opcoes[1] }} </ion-label>
+          </p>
 
+          <p>
+            <ion-label>C) {{ questao.opcoes[2] }} </ion-label>
+          </p>
 
-      <ion-list-header>
-        Resposta correta.
-      </ion-list-header>
+          <p>
+            <ion-label>D) {{ questao.opcoes[3] }} </ion-label>
+          </p>
 
-      <ion-item>
-        <ion-label>{{ questao.resposta }} </ion-label>
-      </ion-item>
-    </ion-list>
+          <p>
+            <ion-label>E) {{ questao.opcoes[4] }} </ion-label>
+          </p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <h1>
+          Resposta correta</h1>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>E) {{ questao.resposta }} </p>
+      </ion-card-content>
+    </ion-card>
+
   </div>
 </ion-content>

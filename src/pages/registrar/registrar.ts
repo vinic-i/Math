@@ -36,6 +36,9 @@ export class RegistrarPage {
     this.working = true;
 
     try{
+      if(this.form.value.password.length < 6){
+        throw new Error("pass6");
+      }
       await this.authProvider.Register(this.form.value.email, this.form.value.password);
 
       this.stopLoading();
@@ -46,11 +49,19 @@ export class RegistrarPage {
       this.stopLoading();
       if(err.message == "The email address is badly formatted."){
         this.messagemErro("Email inválido!");
+        return;
       }
 
       if(err.message == "The email address is already in use by another account.") {
         this.messagemErro("Email em uso.");
+        return;
       }
+
+      if(err.message == "pass6") {
+        this.messagemErro("Mínimo de 6 caracteres na senha.");
+      }
+
+      this.messagemErro(err);
     }
     this.working = false;
 

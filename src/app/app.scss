@@ -14,6 +14,30 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+* {
+  letter-spacing: 0.04em;
+}
+
+.gradiente-bg {
+  // background-image: linear-gradient(#27404f, #f4f4f9);
+  background-image: linear-gradient(#f4f4f9, #27404f);
+}
+
+.light-bg {
+  background: color($colors, light, base);
+  color: color($colors, dark, base);
+}
+
+.primary-bg {
+  background: color($colors, primary, base);
+  color: color($colors, dark, base);
+}
+
+.dark-bg {
+  background: color($colors, dark, base);
+  color: color($colors, primary, base);
+}
+
 .splash_screen {
   width: 100%;
   height: 100%;
@@ -76,4 +100,28 @@
   100% {
     opacity: 1;
   }
+}
+
+
+
+ion-header {
+  .toolbar {      
+    
+    
+
+    .toolbar-background {
+      background: color($colors, dark, base);
+    }
+    .toolbar-title {
+      color: color($colors, void, base);
+    }
+  }
+
+  ion-icon.back-button-icon.icon {
+      color: color($colors, void, base);
+  }
+}
+
+ion-content{
+  background-image: linear-gradient(#f4f4f9, #27404f);
 }

@@ -15,12 +15,14 @@
 
 <ion-content padding>
   <div *ngIf="textos != null">
-    <div *ngFor="let nivel of textos">
+    <ion-card *ngFor="let nivel of textos">
+      <ion-card-header>
+        <h1 style="font-size: 1.5em;">{{nivel.titulo}}</h1>
+      </ion-card-header>
 
-      <h1 style="margin-bottom: -0.5em; font-size: 1.5em;" >{{nivel.titulo}}</h1>
-      <p style="text-align: justify; font-size:1.1em" >{{nivel.texto}}</p>
-     
-    </div>
+      <ion-card-content>
+        <p style="text-align: justify; font-size:1.1em" >{{nivel.texto}}</p>
+      </ion-card-content>
+    </ion-card>
   </div>
-  
 </ion-content>

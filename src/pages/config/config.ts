@@ -4,6 +4,7 @@ import { WelcomePage } from '../welcome/welcome';
 import { AuthProvider } from '../../providers/auth/auth';
 import { DonatePage } from '../donate/donate';
 import { CriarPerfilPage } from '../criar-perfil/criar-perfil';
+import { PropagandaPage } from '../propaganda/propaganda';
 
 /**
  * Generated class for the ConfigPage page.
