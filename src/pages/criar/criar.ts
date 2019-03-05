@@ -39,6 +39,7 @@ export class CriarPage {
   mostrarAutor = true;
 
   @ViewChild('textarea')
+  @ViewChild('math') math: ElementRef;
   myInput: ElementRef;
 
 
@@ -89,11 +90,17 @@ export class CriarPage {
     });
   }
 
+  formSub: Subscription;
   ionViewDidLoad() {
     console.log("ionViewDidLoad CriarPage");
+    this.formSub = this.form.valueChanges.subscribe(() => {
+      this.math.nativeElement.innerHTML = this.enunciado;
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub, this.math.nativeElement]);
+    })
   }
 
   ionViewWillLeave() {
+    this.formSub.unsubscribe();
     if(this.subPerfil){
       this.subPerfil.unsubscribe();
     }

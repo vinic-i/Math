@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -16,12 +16,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class VisualizarQuestaoPage {
   questao;
 
+  @ViewChild('math') math: ElementRef;
+  @ViewChild('math2') math2: ElementRef;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.questao = navParams.get("questao");
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VisualizarQuestaoPage');
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, this.math.nativeElement]);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, this.math2.nativeElement]);
   }
 
 }

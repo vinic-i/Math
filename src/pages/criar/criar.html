@@ -30,7 +30,7 @@
 
           <ion-item>
             <ion-label stacked>Enunciado</ion-label>
-            <ion-textarea style="min-height: 40px;" maxLength="500" #textarea (keyup)="resize()" required [(ngModel)]="enunciado" formControlName="enunciado" placeholder=""></ion-textarea>
+            <ion-textarea style="min-height: 40px;" #textarea required [(ngModel)]="enunciado" formControlName="enunciado" placeholder=""></ion-textarea>
           </ion-item>
 
         </ion-list>
@@ -80,9 +80,8 @@
           {{titulo}} </h1>
       </ion-card-header>
       <ion-card-content>
-        <p style="text-align: justify;
+        <p #math style="text-align: justify;
         text-justify: inter-word;">
-          {{enunciado}}
         </p>
         
         <p style="text-align: right;">

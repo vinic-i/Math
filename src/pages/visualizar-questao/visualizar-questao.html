@@ -22,7 +22,7 @@
       </ion-card-header>
 
       <ion-card-content>
-        <p>
+        <p #math >
           {{ questao.enunciado }}
         </p>
         <p style="text-align: right;">
@@ -31,13 +31,13 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-card>
+    <ion-card >
       <ion-card-header>
         <h1>
           Opções</h1>
       </ion-card-header>
 
-      <ion-card-content>
+      <ion-card-content #math2>
 
           <p>
             <ion-label>A) {{ questao.opcoes[0] }} </ion-label>
