@@ -32,6 +32,7 @@ import { EloProvider } from '../providers/elo/elo';
 import { SelecionarEloPage } from '../pages/selecionar-elo/selecionar-elo';
 import { ResultadoPage } from '../pages/resultado/resultado';
 import { Facebook } from '@ionic-native/facebook';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { Facebook } from '@ionic-native/facebook';
     QuestoesDbProvider,
     AuthProvider,
     EloProvider,
-    Facebook
+    Facebook,
+    GooglePlus
   ]
 })
 export class AppModule {}

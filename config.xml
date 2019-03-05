@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="br.vhstudio.sophia" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="tk.vhstudio.sophia" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>MyApp</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -85,5 +85,8 @@
     <plugin name="cordova-plugin-facebook4" spec="^4.2.1">
         <variable name="APP_ID" value="155735492013452" />
         <variable name="APP_NAME" value="Sophia" />
+    </plugin>
+    <plugin name="cordova-plugin-googleplus" spec="^7.0.0">
+        <variable name="REVERSED_CLIENT_ID" value="1:146233363486:android:30185f1c456ab642" />
     </plugin>
 </widget>

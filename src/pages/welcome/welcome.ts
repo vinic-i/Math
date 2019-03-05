@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { IonicPage, NavController, NavParams, Platform } from "ionic-angular";
 import { LoginPage } from "../login/login";
 import { TabsPage } from "../tabs/tabs";
 import { AuthProvider } from "../../providers/auth/auth";
@@ -25,7 +25,7 @@ export class WelcomePage {
     public navParams: NavParams,
     public authProvider: AuthProvider,
     private db: AngularFirestore,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
   ) {}
 
   ionViewDidLoad() {
@@ -34,7 +34,7 @@ export class WelcomePage {
 
   async Google() {
     try {
-      await this.authProvider.Google();
+      this.authProvider.Google();
     } catch (err) {
       console.log(err);
     }

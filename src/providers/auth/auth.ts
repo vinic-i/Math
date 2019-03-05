@@ -3,6 +3,10 @@ import { Injectable } from '@angular/core';
 import { auth } from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { Platform } from 'ionic-angular';
+
+import { GooglePlus } from '@ionic-native/google-plus';
+import { environment } from '../../environment/environment.prod';
 
 /*
   Generated class for the AuthProvider provider.
@@ -13,7 +17,11 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 @Injectable()
 export class AuthProvider {
 
-  constructor(private afAuth: AngularFireAuth, private fb: Facebook) {
+  constructor(
+    private afAuth: AngularFireAuth, 
+    private fb: Facebook,
+    private gplus: GooglePlus,
+    private platform: Platform) {
     console.log('Hello AuthProvider Provider');
   }
 
@@ -36,8 +44,28 @@ export class AuthProvider {
   }
 
   async Google() {
-    const data = await this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
-    this.user = data.user;
+    if(this.platform.is("cordova")){
+      await this.nativeGoogleLogin();
+    }else{
+      await this.webGoogleLogin();
+    }
+  }
+
+  async nativeGoogleLogin() {
+    const gPlusUser: any = await this.gplus.login({
+      'webClientId': environment.webClientId,
+      'offline': true,
+      'scopes': 'profile email'
+    });
+
+    return await this.afAuth.auth.signInWithCredential(
+      auth.GoogleAuthProvider.credential(gPlusUser.idToken)
+    )
+  }
+
+  async webGoogleLogin(): Promise<void> {
+    const provider = new auth.GoogleAuthProvider();
+    const credential = await this.afAuth.auth.signInWithPopup(provider);
   }
 
   async Register(email, password) {
@@ -57,6 +85,9 @@ export class AuthProvider {
     if(this.facebookLR){
       await this.fb.logout();
       this.facebookLR = null;
+    }
+    if(this.platform.is("cordova")){
+      this.gplus.logout();
     }
   }
 }
