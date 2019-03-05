@@ -31,6 +31,7 @@ import { DonatePage } from '../pages/donate/donate';
 import { EloProvider } from '../providers/elo/elo';
 import { SelecionarEloPage } from '../pages/selecionar-elo/selecionar-elo';
 import { ResultadoPage } from '../pages/resultado/resultado';
+import { Facebook } from '@ionic-native/facebook';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { ResultadoPage } from '../pages/resultado/resultado';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     QuestoesDbProvider,
     AuthProvider,
-    EloProvider
+    EloProvider,
+    Facebook
   ]
 })
 export class AppModule {}

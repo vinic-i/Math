@@ -1,0 +1,6 @@
+{
+  "appId": "br.vhstudio.sophia",
+  "appName": "Sophia",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}

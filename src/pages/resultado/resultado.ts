@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Observable } from 'rxjs';
-import { EloProvider } from '../../providers/elo/elo';
-import { HomePage } from '../home/home';
 import { SelecionarEloPage } from '../selecionar-elo/selecionar-elo';
 import { TabsPage } from '../tabs/tabs';
 

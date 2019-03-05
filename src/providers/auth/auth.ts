@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { auth } from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 /*
   Generated class for the AuthProvider provider.
@@ -12,31 +13,50 @@ import { AngularFireAuth } from '@angular/fire/auth';
 @Injectable()
 export class AuthProvider {
 
-  constructor(private afAuth: AngularFireAuth) {
+  constructor(private afAuth: AngularFireAuth, private fb: Facebook) {
     console.log('Hello AuthProvider Provider');
   }
 
   user;
+  facebookLR: FacebookLoginResponse;
 
-  async Google(){
+
+  private async facebookCredential() {
+    this.facebookLR = await this.fb.login(['public_profile', 'user_friends', 'email']);    
+    
+    this.fb.logEvent(this.fb.EVENTS.EVENT_NAME_ADDED_TO_CART); // Analitics
+    const facebookCredential = auth.FacebookAuthProvider.credential(this.facebookLR.authResponse.accessToken);
+    return facebookCredential;
+  }
+  
+  async loginFacebook() {
+    const facebookCredential = await this.facebookCredential();
+    const data = await this.afAuth.auth.signInWithCredential(facebookCredential)
+    this.user = data;
+  }
+
+  async Google() {
     const data = await this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
     this.user = data.user;
   }
 
-  async loginEmail(email, password){
-    const data = await this.afAuth.auth.signInWithEmailAndPassword(email, password)
-    this.user = data.user;
-  }
-
-  async Register(email, password){
+  async Register(email, password) {
     const data = await this.afAuth.auth.createUserWithEmailAndPassword(email, password)
     console.log(data);
     this.user = data.user;
   }
 
-  async sign_out(){
-    this.user = null;
-    await this.afAuth.auth.signOut();
+  async loginEmail(email, password) {
+    const data = await this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    this.user = data.user;
   }
 
+  async sign_out() {
+    this.user = null;
+    await this.afAuth.auth.signOut();
+    if(this.facebookLR){
+      await this.fb.logout();
+      this.facebookLR = null;
+    }
+  }
 }

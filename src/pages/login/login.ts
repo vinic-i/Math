@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
 import { RegistrarPage } from '../registrar/registrar';
 import { AuthProvider } from '../../providers/auth/auth';

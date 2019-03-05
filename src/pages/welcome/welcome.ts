@@ -5,6 +5,7 @@ import { TabsPage } from "../tabs/tabs";
 import { AuthProvider } from "../../providers/auth/auth";
 import { RegistrarPage } from "../registrar/registrar";
 import { AngularFirestore } from "@angular/fire/firestore";
+import { ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the WelcomePage page.
@@ -23,7 +24,8 @@ export class WelcomePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public authProvider: AuthProvider,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private toastCtrl: ToastController
   ) {}
 
   ionViewDidLoad() {
@@ -33,11 +35,6 @@ export class WelcomePage {
   async Google() {
     try {
       await this.authProvider.Google();
-      const user = this.authProvider.user;
-      const doc = this.db.doc(`perfis/${user.email}`);
-      
-      console.log(doc);
-      this.navCtrl.push(TabsPage);
     } catch (err) {
       console.log(err);
     }
@@ -45,5 +42,24 @@ export class WelcomePage {
 
   Email() {
     this.navCtrl.push(RegistrarPage);
+  }
+
+  async Facebook(){
+    try {
+      await this.authProvider.loginFacebook();
+    }catch(e) {
+      console.log(e);
+      if(e == "cordova_not_available"){
+        this.info("Indisponível em navegadores");
+      }
+    }
+  }
+
+  info(text){
+    const toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000
+    });
+    toast.present();
   }
 }
