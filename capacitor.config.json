@@ -1,0 +1,6 @@
+{
+  "appId": "br.com.viniciushs.sophia",
+  "appName": "Sophia",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}

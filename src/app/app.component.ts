@@ -32,15 +32,18 @@ export class MyApp {
     });
   }
 
-  authVerify() {
-    this.afAuth.user.subscribe(user => {
-      console.log(user);
-      if(!user){
-        this.rootPage = WelcomePage;
-      }else{
-        this.auth.user = user;
+  authVerify() {    
+       this.afAuth.user.subscribe(user => {
+        if(!user){
+          this.rootPage = WelcomePage;
+        }else{
+          this.auth.user = user;
+          this.rootPage = TabsPage;
+        }
+      },
+      err => {
+        console.log(err);
         this.rootPage = TabsPage;
-      }
-    });
+      }); 
   }
 }

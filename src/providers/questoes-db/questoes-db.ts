@@ -4,15 +4,6 @@ import { AngularFirestore, AngularFirestoreCollection,
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-
-/*
-  Generated class for the QuestoesDbProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-
-
 export interface Questao{
   titulo: string;
   nivel: string;
@@ -20,6 +11,7 @@ export interface Questao{
   resposta: string;
   opcoes: string[];
   autor: string;
+  mostrarAutor: boolean;
   userId: string;
 };
 
@@ -34,7 +26,7 @@ export class QuestoesDbProvider {
   }
 
   setupAdmin(userId){
-    //this.admin = this.Collection.ref.orderBy("userId").isEqual(userId)
+    
     this.admin = this.db.collection<Questao>("questoes", ref => ref.where("userId","==", userId))
     .snapshotChanges().pipe(
       map(action =>{

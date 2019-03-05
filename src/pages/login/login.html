@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding  style="    text-align: center;">
   <form action="" [formGroup]="form" (ngSubmit)="login()" >
     
     <ion-item>
@@ -29,10 +29,11 @@
         
       </ion-input>
     </ion-item>
-    <button ion-button block type="submit" color="dark">
+    <button  style="margin-top: 1em;" ion-button block type="submit" color="dark">
       Entrar
     </button>
   </form>
+  <br>
   <a (click)="register()" block clear >
       Registrar
   </a>

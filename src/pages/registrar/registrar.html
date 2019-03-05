@@ -5,35 +5,27 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Registrar</ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content padding style="    text-align: center;">
+  <form action="" [formGroup]="form" (ngSubmit)="Register()">
+    <ion-item>
+      <ion-label flooting>Endereço de email</ion-label>
+      <ion-input formControlName="email" type="text"> </ion-input>
+    </ion-item>
 
-<ion-content padding>
-    <form action="" [formGroup]="form" (ngSubmit)="Register()" >
-    
-        <ion-item>
-          <ion-label flooting>Endereço de email</ion-label>
-          <ion-input formControlName="email" type="text">
-            
-          </ion-input>
-        </ion-item>
-        
-        <ion-item>
-          <ion-label flooting>Senha</ion-label>
-          <ion-input formControlName="password" type="password">
-            
-          </ion-input>
-        
-        </ion-item>
-        <button (click)="Register()" ion-button block color="dark" type="submit">
-            Registrar
-        </button>
-      </form>
-      <a (click)="login()"> Já possuo conta! </a>
+    <ion-item>
+      <ion-label flooting>Senha</ion-label>
+      <ion-input formControlName="password" type="password"> </ion-input>
+    </ion-item>
+    <button style="margin-top: 1em;" [disabled]="working" ion-button block color="dark" type="submit">
+      Registrar
+    </button>
+  </form>
+  <br />
 
+  <a (click)="login()"> Já possuo conta! </a>
 </ion-content>

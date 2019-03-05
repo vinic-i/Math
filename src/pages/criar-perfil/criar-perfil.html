@@ -5,7 +5,10 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar> <ion-title>Criando Perfil</ion-title> </ion-navbar>
+  <ion-navbar>
+    <ion-title *ngIf="!perfilAtual">Criando Perfil</ion-title>
+    <ion-title *ngIf="perfilAtual">Editando Perfil</ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
@@ -13,15 +16,23 @@
     <ion-list>
       <ion-item>
         <ion-label>Nome</ion-label>
-        <ion-input formControlName="nome" type="text"></ion-input>
+        <ion-input required formControlName="nome" type="text"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>Sobernome</ion-label>
-        <ion-input formControlName="sobrenome" type="text"></ion-input>
+        <ion-input required formControlName="sobrenome" type="text"></ion-input>
       </ion-item>
 
-      <button ion-button (click)="criar()">Continuar</button>
+      <ion-item>
+        <ion-label>Escola</ion-label>
+        <ion-input formControlName="escola" type="text"></ion-input>
+      </ion-item>
+
+      <button *ngIf="!perfilAtual" [disabled]="!form.valid" style="margin-top: 1em;" block ion-button color="dark"
+        (click)="criar()">Continuar</button>
+      <button *ngIf="perfilAtual" [disabled]="!form.valid" style="margin-top: 1em;" block ion-button color="dark"
+        (click)="salvar()">Salvar</button>
     </ion-list>
   </form>
 </ion-content>

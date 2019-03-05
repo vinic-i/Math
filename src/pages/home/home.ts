@@ -7,6 +7,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { CriarPerfilPage } from '../criar-perfil/criar-perfil';
 import { SelecionarEloPage } from '../selecionar-elo/selecionar-elo';
+import { NiveisPage } from '../niveis/niveis';
 
 @Component({
   selector: 'page-home',
@@ -33,6 +34,7 @@ export class HomePage {
   jogar (){
     this.navCtrl.push(SelecionarEloPage);
   }
+  
 
   criar (){
     this.navCtrl.push(CriarPage);
