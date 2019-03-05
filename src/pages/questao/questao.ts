@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Questao } from '../../providers/questoes-db/questoes-db';
 import { TabsPage } from '../tabs/tabs';
@@ -25,6 +25,8 @@ export class QuestaoPage {
   questao: Questao;
   resposta: string;
 
+  @ViewChild('math') math: ElementRef;
+
   constructor(public navCtrl: NavController,
     private auth: AuthProvider,
     public navParams: NavParams,
@@ -39,6 +41,7 @@ export class QuestaoPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad QuestaoPage');
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, this.math.nativeElement]);
   }
 
   async verify() {
