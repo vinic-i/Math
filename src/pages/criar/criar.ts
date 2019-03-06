@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { IonicPage, NavController, NavParams, Slides } from "ionic-angular";
 import {
   QuestoesDbProvider,
   Questao
@@ -38,10 +38,14 @@ export class CriarPage {
   autor;
   mostrarAutor = true;
 
-  @ViewChild('textarea')
-  @ViewChild('math') math: ElementRef;
-  myInput: ElementRef;
+  @ViewChild('tituloInput') tituloInput: ElementRef;
+  @ViewChild('enunciadoInput') enunciadoInput: ElementRef;
 
+  @ViewChild('math') math: ElementRef;
+  
+  @ViewChild(Slides) slides: Slides;
+
+  showAddButton = true;
 
 
   perfilRef: AngularFirestoreDocument;
@@ -88,15 +92,19 @@ export class CriarPage {
       e: [""],
       mostrarAutor: [""]
     });
+
   }
 
   formSub: Subscription;
   ionViewDidLoad() {
     console.log("ionViewDidLoad CriarPage");
+
     this.formSub = this.form.valueChanges.subscribe(() => {
       this.math.nativeElement.innerHTML = this.enunciado;
       MathJax.Hub.Queue(["Typeset", MathJax.Hub, this.math.nativeElement]);
     })
+    
+    this.slides.lockSwipes(true);
   }
 
   ionViewWillLeave() {
@@ -109,9 +117,44 @@ export class CriarPage {
     }
   }
 
-  resize() {
-    if(!this.myInput) return;
-    this.myInput['_elementRef'].nativeElement.style.height = this.myInput['_elementRef'].nativeElement.scrollHeight + 'px';
+
+
+  visualizar() {
+    this.slides.lockSwipes(false);
+    this.slides.slideTo(1, 500);
+    this.slides.lockSwipes(true);
+  }
+
+  editar() {
+    this.slides.lockSwipes(false);
+    this.slides.slideTo(0, 500);
+    this.slides.lockSwipes(true);
+  }
+
+  tituloVisClick(){
+    this.editar();
+    setTimeout(() => {
+      if(this.tituloInput)
+        this.tituloInput['_elementRef'].nativeElement.children[0].focus();
+    },150);
+  }
+
+  enunciadoVisClick(){
+    this.editar();
+    setTimeout(() => {
+      if(this.enunciadoInput)
+        this.enunciadoInput['_elementRef'].nativeElement.children[0].focus();
+    },150);
+  }
+
+  slideModou() {
+    let currentIndex = this.slides.getActiveIndex();
+    if(currentIndex == 0){
+      this.showAddButton = true;
+    }else{
+      this.showAddButton = false;
+    }
+    console.log('Current index is', currentIndex);
   }
 
   salvar() {

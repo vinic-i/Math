@@ -17,7 +17,6 @@ export class VisualizarQuestaoPage {
   questao;
 
   @ViewChild('math') math: ElementRef;
-  @ViewChild('math2') math2: ElementRef;
   
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.questao = navParams.get("questao");
@@ -26,7 +25,6 @@ export class VisualizarQuestaoPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad VisualizarQuestaoPage');
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, this.math.nativeElement]);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, this.math2.nativeElement]);
   }
 
 }

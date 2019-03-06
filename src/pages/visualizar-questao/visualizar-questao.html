@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content  #math padding>
 
   <div *ngIf="questao">
     <ion-card>
@@ -22,7 +22,7 @@
       </ion-card-header>
 
       <ion-card-content>
-        <p #math >
+        <p >
           {{ questao.enunciado }}
         </p>
         <p style="text-align: right;">
@@ -37,7 +37,7 @@
           Opções</h1>
       </ion-card-header>
 
-      <ion-card-content #math2>
+      <ion-card-content>
 
           <p>
             <ion-label>A) {{ questao.opcoes[0] }} </ion-label>

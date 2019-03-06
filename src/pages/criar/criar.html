@@ -7,117 +7,122 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Crie sua questão</ion-title>
+    <ion-title *ngIf="showAddButton">Crie sua questão</ion-title>
+    <ion-title *ngIf="!showAddButton">Visualização</ion-title>
+    <ion-buttons end>
+      <button *ngIf="showAddButton" ion-button icon-only color="primary">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="criar-questao">
   <form [formGroup]="form">
+  <ion-slides (ionSlideDidChange)="slideModou()">
+    <ion-slide class="primeiro-slide" >
+        <ion-card>
+          <ion-card-header>
+            <h1>Descrição da questão</h1>
+          </ion-card-header>
 
+          <ion-list>
 
-    <ion-card>
-      <ion-card-header>
-        <h1>Descrição da questão</h1>
-      </ion-card-header>
-
-
-        <ion-list>
-
-          <ion-item>
-            <ion-label stacked>Título</ion-label>
-            <ion-input required [(ngModel)]="titulo" formControlName="titulo" type="text"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label stacked>Enunciado</ion-label>
-            <ion-textarea style="min-height: 40px;" #textarea required [(ngModel)]="enunciado" formControlName="enunciado" placeholder=""></ion-textarea>
-          </ion-item>
-
-        </ion-list>
-    </ion-card>
-
-
-
-    <ion-card>
-      <ion-card-header>
-        <h1>
-          Alternativas</h1>
-      </ion-card-header>
-
-        <ion-list>
-          <ion-item>
-            <ion-label>A) </ion-label>
-            <ion-input required [(ngModel)]="opcoes[0]" formControlName="a"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label>B) </ion-label>
-            <ion-input required [(ngModel)]="opcoes[1]" formControlName="b"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label>C) </ion-label>
-            <ion-input required [(ngModel)]="opcoes[2]" formControlName="c"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label>D) </ion-label>
-            <ion-input required [(ngModel)]="opcoes[3]" formControlName="d"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label>E) </ion-label>
-            <ion-input required [(ngModel)]="opcoes[4]" formControlName="e"></ion-input>
-          </ion-item>
-        </ion-list>
-    </ion-card>
-
-
-    <ion-card>
-
-    <ion-card-header>
-        <h1 style="white-space: initial;">
-          {{titulo}} </h1>
-      </ion-card-header>
-      <ion-card-content>
-        <p #math style="text-align: justify;
-        text-justify: inter-word;">
-        </p>
-        
-        <p style="text-align: right;">
-            {{ mostrarAutor ? "By: " + autor : "  " }}
-          </p>
-        <br>
-        <ion-list>
             <ion-item>
-              <ion-label>Identificar autor</ion-label>
-              <ion-checkbox [(ngModel)]="mostrarAutor" formControlName="mostrarAutor" color="dark" checked="true"></ion-checkbox>
+              <ion-label floating>Título</ion-label>
+              <ion-input #tituloInput required [(ngModel)]="titulo" formControlName="titulo" type="text"></ion-input>
             </ion-item>
 
-            
-          <ion-item>
-            <ion-label>Alternativa correta</ion-label>
-            <ion-select required [(ngModel)]="resposta" formControlName="resposta">
-              <ion-option value="A">A) {{opcoes[0]}} </ion-option>
-              <ion-option value="B">B) {{opcoes[1]}} </ion-option>
-              <ion-option value="C">C) {{opcoes[2]}} </ion-option>
-              <ion-option value="D">D) {{opcoes[3]}} </ion-option>
-              <ion-option value="E">E) {{opcoes[4]}}</ion-option>
-            </ion-select>
-          </ion-item>
-          <ion-item>
-            <ion-label>Nível da questão</ion-label>
-            <ion-select required [(ngModel)]="nivel" formControlName="nivel">
-              <ion-option value="A">Nível 1 </ion-option>
-              <ion-option value="B">Nível 2 </ion-option>
-              <ion-option value="C">Nível 3 </ion-option>
-              <ion-option value="D">Nível 4 </ion-option>
-              <ion-option value="E">Nível 5</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
-        <button ion-button (click)="salvar()" [disabled]="!form.valid" color="primary" type="submit" block>Confirmar</button>
-      </ion-card-content>
-    </ion-card>
-  </form>
+            <ion-item>
+              <ion-label floating>Enunciado</ion-label>
+              <ion-textarea #enunciadoInput required [(ngModel)]="enunciado" formControlName="enunciado" placeholder=""></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-label>A) </ion-label>
+              <ion-input required [(ngModel)]="opcoes[0]" formControlName="a"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>B) </ion-label>
+              <ion-input required [(ngModel)]="opcoes[1]" formControlName="b"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>C) </ion-label>
+              <ion-input required [(ngModel)]="opcoes[2]" formControlName="c"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>D) </ion-label>
+              <ion-input required [(ngModel)]="opcoes[3]" formControlName="d"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>E) </ion-label>
+              <ion-input required [(ngModel)]="opcoes[4]" formControlName="e"></ion-input>
+            </ion-item>
+          </ion-list>
+          <ion-card-content>
+            <button class="display-none-bg" ion-button (click)="visualizar()" color="primary" type="submit" block>Visualizar</button>
+          </ion-card-content>
+        </ion-card>
+    </ion-slide>
+
+
+    <ion-slide class="segundo-slide">
+      <ion-card>
+        <ion-card-header>
+          <h1 *ngIf="!titulo || titulo.length == 0" (click)="tituloVisClick();" class="visualizacao">
+                Adicionar um título </h1>
+          <h1 *ngIf="titulo && titulo.length > 0" (click)="tituloVisClick();" style="white-space: initial;">
+                {{titulo}} </h1>
+        </ion-card-header>
+        <ion-card-content>
+          <p *ngIf="!enunciado || enunciado.length == 0" (click)="enunciadoVisClick()"
+            class="visualizacao">
+            Adicionar um enunciado.
+          </p>
+          <p #math [class]="enunciado && enunciado.length > 0 ? 'visualizacao' : 'inativo'" (click)="enunciadoVisClick()"  >
+          </p>
+
+          <p style="text-align: right;">
+            {{ mostrarAutor ? "By: " + autor : " " }}
+          </p>
+          <br>
+          <ion-list>
+              <ion-item>
+                <ion-label>Identificar autor</ion-label>
+                <ion-checkbox [(ngModel)]="mostrarAutor" formControlName="mostrarAutor" color="dark" checked="true"></ion-checkbox>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Alternativa correta</ion-label>
+                <ion-select required [(ngModel)]="resposta" formControlName="resposta">
+                  <ion-option value="A">A) {{opcoes[0]}} </ion-option>
+                  <ion-option value="B">B) {{opcoes[1]}} </ion-option>
+                  <ion-option value="C">C) {{opcoes[2]}} </ion-option>
+                  <ion-option value="D">D) {{opcoes[3]}} </ion-option>
+                  <ion-option value="E">E) {{opcoes[4]}}</ion-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label>Nível da questão</ion-label>
+                <ion-select required [(ngModel)]="nivel" formControlName="nivel">
+                  <ion-option value="A">Nível 1 </ion-option>
+                  <ion-option value="B">Nível 2 </ion-option>
+                  <ion-option value="C">Nível 3 </ion-option>
+                  <ion-option value="D">Nível 4 </ion-option>
+                  <ion-option value="E">Nível 5</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          <button ion-button class="display-none-bg" (click)="editar()" color="dark" type="submit" block>Editar</button>
+          <button ion-button (click)="salvar()" [disabled]="!form.valid" color="primary" type="submit" block>Confirmar</button>
+        </ion-card-content>
+      </ion-card>
+
+    </ion-slide>
+  </ion-slides>
+
+</form>
 </ion-content>

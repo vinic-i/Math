@@ -107,8 +107,6 @@
 ion-header {
   .toolbar {      
     
-    
-
     .toolbar-background {
       background: color($colors, dark, base);
     }
@@ -124,4 +122,20 @@ ion-header {
 
 ion-content{
   background-image: linear-gradient(#f4f4f9, #27404f);
+}
+
+
+/* Font styles */
+
+h1 {
+  font-weight: 100;
+}
+
+
+
+/* Responsive elements */
+@media only screen and (min-width: 768px) {
+  .display-none-bg {
+    display: none;   
+  }
 }
