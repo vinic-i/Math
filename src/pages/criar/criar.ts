@@ -26,37 +26,42 @@ import { Subscription } from "rxjs";
   templateUrl: "criar.html"
 })
 export class CriarPage {
-  form: FormGroup;
-
-  userId;
-
-  titulo;
-  nivel;
-  enunciado;
-  resposta;
-  opcoes = ["", "", "", "", ""];
-  autor;
-  mostrarAutor = true;
-
-  @ViewChild('tituloInput') tituloInput: ElementRef;
-  @ViewChild('enunciadoInput') enunciadoInput: ElementRef;
-
-  @ViewChild('math') math: ElementRef;
-  
-  @ViewChild(Slides) slides: Slides;
-
-  showAddButton = true;
-
-
+  // Firestore
   perfilRef: AngularFirestoreDocument;
   pontos_professorRef: AngularFirestoreDocument;
   pontos_admin;
   perfil;
   pontosAtualizados = false;
-
-
   subPerfil: Subscription;
   subPontosProfessor: Subscription;
+
+  
+  // Inputs
+  form: FormGroup;
+  userId;
+  titulo = '';
+  nivel;
+  enunciado = '';
+  resposta;
+  opcoes = ["", "", "", "", ""];
+  autor;
+  mostrarAutor = true;
+
+
+  // Visual effects
+  @ViewChild('tituloInput') tituloInput: ElementRef;
+  @ViewChild('enunciadoInput') enunciadoInput: ElementRef;
+  @ViewChild('math') math: ElementRef;
+  @ViewChild('fab') fab: ElementRef;
+  @ViewChild(Slides) slides: Slides;
+  showAddButton = true;
+  opcoesSimples = [
+    "$ x^n $ ",
+    "$ \\frac{x}{y} $",
+    "$ \\sqrt {x} $"
+  ]
+
+
 
   constructor(
     public navCtrl: NavController,
@@ -98,6 +103,7 @@ export class CriarPage {
   formSub: Subscription;
   ionViewDidLoad() {
     console.log("ionViewDidLoad CriarPage");
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, this.fab.nativeElement]);
 
     this.formSub = this.form.valueChanges.subscribe(() => {
       this.math.nativeElement.innerHTML = this.enunciado;
@@ -117,7 +123,10 @@ export class CriarPage {
     }
   }
 
-
+  addSimbulo(simbolo){
+    this.enunciado = this.enunciado + simbolo;
+    this.enunciadoVisClick();
+  }
 
   visualizar() {
     this.slides.lockSwipes(false);

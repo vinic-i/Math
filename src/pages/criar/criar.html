@@ -10,8 +10,11 @@
     <ion-title *ngIf="showAddButton">Crie sua questão</ion-title>
     <ion-title *ngIf="!showAddButton">Visualização</ion-title>
     <ion-buttons end>
-      <button *ngIf="showAddButton" ion-button icon-only color="primary">
-        <ion-icon name="add"></ion-icon>
+      <button  class="display-none-bg"  *ngIf="showAddButton" (click)="visualizar()" ion-button icon-only color="light" >
+        <ion-icon name="eye"></ion-icon>
+      </button>
+      <button  class="display-none-bg"  *ngIf="!showAddButton" (click)="editar()" ion-button icon-only color="light">
+        <ion-icon name="create"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -19,8 +22,8 @@
 
 <ion-content class="criar-questao">
   <form [formGroup]="form">
-  <ion-slides (ionSlideDidChange)="slideModou()">
-    <ion-slide class="primeiro-slide" >
+    <ion-slides (ionSlideDidChange)="slideModou()">
+      <ion-slide class="primeiro-slide">
         <ion-card>
           <ion-card-header>
             <h1>Descrição da questão</h1>
@@ -63,33 +66,34 @@
             </ion-item>
           </ion-list>
           <ion-card-content>
-            <button class="display-none-bg" ion-button (click)="visualizar()" color="primary" type="submit" block>Visualizar</button>
+            
           </ion-card-content>
         </ion-card>
-    </ion-slide>
 
 
-    <ion-slide class="segundo-slide">
-      <ion-card>
-        <ion-card-header>
-          <h1 *ngIf="!titulo || titulo.length == 0" (click)="tituloVisClick();" class="visualizacao">
-                Adicionar um título </h1>
-          <h1 *ngIf="titulo && titulo.length > 0" (click)="tituloVisClick();" style="white-space: initial;">
-                {{titulo}} </h1>
-        </ion-card-header>
-        <ion-card-content>
-          <p *ngIf="!enunciado || enunciado.length == 0" (click)="enunciadoVisClick()"
-            class="visualizacao">
-            Adicionar um enunciado.
-          </p>
-          <p #math [class]="enunciado && enunciado.length > 0 ? 'visualizacao' : 'inativo'" (click)="enunciadoVisClick()"  >
-          </p>
+      </ion-slide>
 
-          <p style="text-align: right;">
-            {{ mostrarAutor ? "By: " + autor : " " }}
-          </p>
-          <br>
-          <ion-list>
+
+      <ion-slide class="segundo-slide">
+        <ion-card>
+          <ion-card-header>
+            <h1 *ngIf="!titulo || titulo.length == 0" (click)="tituloVisClick();" class="visualizacao">
+              Adicionar um título </h1>
+            <h1 *ngIf="titulo && titulo.length > 0" (click)="tituloVisClick();" style="white-space: initial;">
+              {{titulo}} </h1>
+          </ion-card-header>
+          <ion-card-content>
+            <p *ngIf="!enunciado || enunciado.length == 0" (click)="enunciadoVisClick()" class="visualizacao">
+              Adicionar um enunciado.
+            </p>
+            <p #math [class]="enunciado && enunciado.length > 0 ? 'visualizacao' : 'inativo'" (click)="enunciadoVisClick()">
+            </p>
+
+            <p style="text-align: right;">
+              {{ mostrarAutor ? "By: " + autor : " " }}
+            </p>
+            <br>
+            <ion-list>
               <ion-item>
                 <ion-label>Identificar autor</ion-label>
                 <ion-checkbox [(ngModel)]="mostrarAutor" formControlName="mostrarAutor" color="dark" checked="true"></ion-checkbox>
@@ -116,13 +120,24 @@
                 </ion-select>
               </ion-item>
             </ion-list>
-          <button ion-button class="display-none-bg" (click)="editar()" color="dark" type="submit" block>Editar</button>
-          <button ion-button (click)="salvar()" [disabled]="!form.valid" color="primary" type="submit" block>Confirmar</button>
-        </ion-card-content>
-      </ion-card>
+            <button ion-button (click)="salvar()" [disabled]="!form.valid" color="primary" type="submit" block>Confirmar</button>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </form>
 
-    </ion-slide>
-  </ion-slides>
+  <ion-fab #fab right bottom>
+    <button ion-fab color="primary">
+      <ion-icon name="add"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+      <!-- <button ion-fab>
+        <ion-icon name="more"></ion-icon>
+      </button> -->
+      <button *ngFor="let simbolo of opcoesSimples" (click)="addSimbulo(simbolo)" ion-fab> {{simbolo}} </button>
+      <!-- <button ion-fab> $ \frac{x}{y} $ </button> -->
+    </ion-fab-list>
+  </ion-fab>
 
-</form>
 </ion-content>
