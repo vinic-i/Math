@@ -2,4 +2,88 @@ page-criar {
 .label-md{
     font-size: 1.7rem !important;
 }
+
+.criar-questao {
+    ion-slides {
+        height: fit-content;
+    }
+    .toolbar-background {
+      background: #fff;
+      border-color: transparent;
+    }
+  
+    .slide-zoom {
+      height: 100%;
+    }
+  
+    .slide-title {
+      margin-top: 2.8rem;
+    }
+  
+    .slide-image {
+      max-height: 50%;
+      max-width: 60%;
+      margin: 18px 0;
+    }
+  
+    b {
+      font-weight: 500;
+    }
+  
+    p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #60646B;
+  
+      b {
+        color: #000000;
+      }
+
+      
+    }
+
+    p.visualizacao {
+      text-align: left;
+      border: 1px black dotted;
+      text-justify: inter-word;
+      min-height: 10rem;
+    }
+
+    h1.visualizacao {
+      white-space: initial;
+      border: 1px black dotted;
+    }
+
+    .inativo {
+      display: none;
+    }
+  
+  }
+
+}
+
+@media only screen and (min-width: 768px) {
+  /* For big screens: */
+  .criar-questao  {
+    .primeiro-slide {
+      width: 49vw !important;
+    }
+
+    .segundo-slide {
+      width: 50vw !important;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  /* For big screens: */
+  .criar-questao  {
+    .primeiro-slide {
+      width: 30vw !important;
+    }
+
+    .segundo-slide {
+      width: 66vw !important;
+    }
+  }
 }
